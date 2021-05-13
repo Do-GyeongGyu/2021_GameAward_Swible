@@ -26,13 +26,20 @@ public class PlayerController : MonoBehaviour
     public Vector3 _DefaultPos  = new Vector3(0.0f, 0.0f, 0.0f);    // プレイヤーの初期位置
     public bool _IsFront        = true;                             // 表ステージかどうか
 
+    private Ray _Ray;                                               // 当たり判定取得用のレイ
+    private GameObject _RayCastHitObject;                           // レイが当たったオブジェクトを取得するための変数
+    [SerializeField]private float _RayDistance = 0.0f;              // レイの長さ
+
     private CharacterController _Controller;        // コンポーネントの取得
     private Vector3 _MoveDirection = Vector3.zero;  // キャラクターの移動量
     private float _H;                               // キー入力取得用
     private CharactorState _CharactorState;         // キャラクターステート
-    //private GameObject _TMPAerial;
     private GameObject _WorldMgr;                   // WorldMgrの情報格納用
     private GameObject _AerialMgr;                  // AerialMgrの情報格納用
+    private GameObject _AerialCollision;            // プレイヤーと触れている足場格納用
+    private GameObject _NearestAerial;              // プレイヤーに最も近い足場格納用
+    private GameObject _CurrentNearestAerial;              // 現在プレイヤーに最も近い足場格納用
+
 
 
     // メンバ関数
@@ -72,6 +79,26 @@ public class PlayerController : MonoBehaviour
         _IsFront = f;
     }
 
+    //************************************************
+    //  Rayで取得したオブジェクトを返すGetter
+    //************************************************
+    public GameObject GetRayCastObject()
+    {
+        return _RayCastHitObject;
+    }
+
+
+
+    private void OnControllerColliderHit(ControllerColliderHit hit)
+    {
+        if(hit.gameObject.tag == "Aerial")
+        {
+            _AerialCollision = hit.gameObject;
+        }
+    }
+
+
+
     // Start is called before the first frame update
     void Start()
     {
@@ -81,20 +108,30 @@ public class PlayerController : MonoBehaviour
         // CharactorStateの初期化
         _CharactorState = CharactorState.STATE_NORMAL;   // 初期値を表に設定
 
-        //_TMPAerial = GameObject.Find("Aerial");
-
         // WorldMgrの取得
         _WorldMgr = GameObject.Find("WorldMgr");
 
         // WorldMgrの取得
         _AerialMgr = GameObject.Find("AerialMgr");
 
+        // _AerialCollisionの初期化
+        _AerialCollision = null;
+
+        // _NearestAerialの初期化
+        _NearestAerial = null;
+
+        // _CurrentNearestAerialの初期化
+        _CurrentNearestAerial = null;
+
     }//Start
 
     // Update is called once per frame
     void Update()
     {
-        if(_CharactorState == CharactorState.STATE_NORMAL)// 通常状態
+        // プレイヤーに最も近い足場のオブジェクトを取得
+        _NearestAerial = _AerialMgr.GetComponent<AerialMgr>().GetNearestAerial();
+
+        if (_CharactorState == CharactorState.STATE_NORMAL)// 通常状態
         {
             // キー入力取得
             _H = Input.GetAxis("Horizontal");    // 値の範囲(-1.0f~1.0f)
@@ -111,7 +148,19 @@ public class PlayerController : MonoBehaviour
                                                  //        _Speed = _MaxSpeed;
                                                  //}
 
+            // Rayの更新
+            _Ray = new Ray(this.transform.position, -this.transform.up);
+            RaycastHit rayCastHit;
 
+            if (Physics.Raycast(_Ray.origin, _Ray.direction, out rayCastHit, _RayDistance))
+            {
+                if (rayCastHit.collider.gameObject.tag == "Aerial")
+                    _RayCastHitObject = rayCastHit.collider.gameObject;
+            }
+            else
+            {
+                _RayCastHitObject = null;
+            }
 
 
             // キャラクターの移動
@@ -142,37 +191,20 @@ public class PlayerController : MonoBehaviour
                 // 足場の変更（簡易実装）
                 if(Input.GetKeyDown(KeyCode.C))
                 {
-                    // プレイヤーに最も近い足場のオブジェクトを取得
-                    GameObject aerialObj = _AerialMgr.GetComponent<AerialMgr>().GetNearestAerial();
-
-                    if (aerialObj != null)
-                        // 取得したオブジェクトのステート（表裏）を切り替える
-                        aerialObj.GetComponent<AerialController>().ChangeState();
-
-
-
-                    //if (GameObject.Find("WorldMgr").GetComponent<WorldMgr>().GetWorldState() == WorldMgr.WorldState.STATE_FRONT)
-                    //{
-                    //    if(GameObject.Find("AerialMgr").GetComponent<TMPAerialController>().GetAerialState() == TMPAerialController.AerialState.STATE_FRONT)
-                    //    {
-                    //        GameObject.Find("AerialMgr").GetComponent<TMPAerialController>().SetAerialState(TMPAerialController.AerialState.STATE_BACK);
-                    //    }
-                    //}
-                    //else
-                    //{
-                    //    if(GameObject.Find("AerialMgr").GetComponent<TMPAerialController>().GetAerialState() == TMPAerialController.AerialState.STATE_BACK)
-                    //    {
-                    //        GameObject.Find("AerialMgr").GetComponent<TMPAerialController>().SetAerialState(TMPAerialController.AerialState.STATE_FRONT);
-                    //    }
-                    //}
+                    // 取得したオブジェクトのステート（表裏）を切り替える
+                    if (_NearestAerial != null)
+                        _NearestAerial.GetComponent<AerialController>().ChangeState();
                 }
             }
             else if(!_Controller.isGrounded)
             {
                 _MoveDirection.x = _H;                                          // キー入力でx成分のみ移動量に加える
                 _MoveDirection.x *= _Speed;                                     // キャラクターの設定スピードを乗算
+                
+                // _AerialCollisionを空にする
+                _AerialCollision = null;
 
-                Debug.Log("a");
+                //Debug.Log("a");
             }
             
             // 重力設定

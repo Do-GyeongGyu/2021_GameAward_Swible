@@ -14,6 +14,8 @@ public class AerialController : MonoBehaviour
     // パラメータ
     [SerializeField] private AerialState _AerialState = AerialState.STATE_FRONT;    // 現在のステート格納用、初期値は表
     private GameObject _WorldMgr;                                                   // WorldMgrのオブジェクト情報を持っておく
+    private GameObject _ButtonIcon;                                                 // ButtonIcon操作用変数
+    private bool _ButtonIconEnabled = false;                                        // ButtonIconが表示されているか
 
     // メンバ関数
     //************************************************
@@ -29,6 +31,18 @@ public class AerialController : MonoBehaviour
     }
 
     //************************************************
+    //  アイコンの表示を切り替える関数
+    //  関数を呼ぶ度に切り替わる
+    //************************************************
+    public void ChangeButtonIconEnabled()
+    {
+        if (_ButtonIconEnabled)
+            _ButtonIconEnabled = false;
+        else
+            _ButtonIconEnabled = true;
+    }
+
+    //************************************************
     //  現在のステートを渡すGetter関数
     //************************************************
     public AerialState GetAerialState()
@@ -39,12 +53,18 @@ public class AerialController : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
-        _WorldMgr = GameObject.Find("WorldMgr");    // WorldMgrを探して保持
+        _WorldMgr = GameObject.Find("WorldMgr");                                // WorldMgrを探して保持
+        _ButtonIcon = gameObject.transform.FindChild("ButtonIcon").gameObject;  // ButtonIconを取得
+        _ButtonIcon.SetActive(false);                                           // 初期状態は非表示にしておく
     }
 
     // Update is called once per frame
     void Update()
     {
-        
+        // ButtonIconの表示切り替え
+        if (_ButtonIconEnabled)
+            _ButtonIcon.SetActive(true);
+        else
+            _ButtonIcon.SetActive(false);
     }
 }

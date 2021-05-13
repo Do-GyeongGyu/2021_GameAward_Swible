@@ -27,8 +27,12 @@ public class AerialMgr : MonoBehaviour
             //  1,プレイヤーと足場の距離が最も短い場合
             //  2,プレイヤーと足場の距離が既定の距離よりも短い場合
             //  3,足場のステートとステージのステートが一致してる場合
+            //  4,足場にプレイヤーがのっていない場合
             //**********************************************************
-            if (targetDistance < minDistance && targetDistance < _AerialSearchDistance && (int)target.GetComponent<AerialController>().GetAerialState() == (int)_WorldMgr.GetComponent<WorldMgr>().GetWorldState())
+            if (targetDistance < minDistance && 
+                targetDistance < _AerialSearchDistance && 
+                (int)target.GetComponent<AerialController>().GetAerialState() == (int)_WorldMgr.GetComponent<WorldMgr>().GetWorldState() &&
+                _Player.GetComponent<PlayerController>().GetRayCastObject() != target.gameObject)
             {
                 minDistance     = targetDistance;               // プレイヤーに最も短い距離を代入
                 nearestAerial   = target.transform.gameObject;  // プレイヤーに最も近い足場オブジェクトを返却用変数に格納

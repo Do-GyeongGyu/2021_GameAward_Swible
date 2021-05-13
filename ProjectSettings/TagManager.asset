@@ -6,6 +6,7 @@ TagManager:
   tags:
   - MoveStage
   - Goal
+  - Aerial
   layers:
   - Default
   - TransparentFX
