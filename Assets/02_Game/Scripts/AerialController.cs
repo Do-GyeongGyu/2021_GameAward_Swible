@@ -54,7 +54,7 @@ public class AerialController : MonoBehaviour
     void Start()
     {
         _WorldMgr = GameObject.Find("WorldMgr");                                // WorldMgrを探して保持
-        _ButtonIcon = gameObject.transform.FindChild("ButtonIcon").gameObject;  // ButtonIconを取得
+        _ButtonIcon = gameObject.transform.Find("ButtonIcon").gameObject;  // ButtonIconを取得
         _ButtonIcon.SetActive(false);                                           // 初期状態は非表示にしておく
     }
 
