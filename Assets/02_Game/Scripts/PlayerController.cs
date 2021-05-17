@@ -80,13 +80,24 @@ public class PlayerController : MonoBehaviour
     }
 
     //************************************************
+    //  操作できる足場のアイコンを表示させる関数
+    //************************************************
+    public bool CheckNearestAerial()
+    {
+        if (_CurrentNearestAerial != _NearestAerial)// 現在の最も近い足場と取得した最も近い足場が異なる場合
+            return true;
+        else
+            return false;
+    }
+
+    //************************************************
     //  Rayで取得したオブジェクトを返すGetter
     //************************************************
     public GameObject GetRayCastObject()
     {
         return _RayCastHitObject;
     }
-
+    
 
 
     private void OnControllerColliderHit(ControllerColliderHit hit)
@@ -128,8 +139,7 @@ public class PlayerController : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        // プレイヤーに最も近い足場のオブジェクトを取得
-        _NearestAerial = _AerialMgr.GetComponent<AerialMgr>().GetNearestAerial();
+        
 
         if (_CharactorState == CharactorState.STATE_NORMAL)// 通常状態
         {
@@ -161,6 +171,38 @@ public class PlayerController : MonoBehaviour
             {
                 _RayCastHitObject = null;
             }
+
+            // プレイヤーに最も近い足場のオブジェクトを取得
+            _NearestAerial = _AerialMgr.GetComponent<AerialMgr>().GetNearestAerial();
+
+            // 最も近い足場が変わったかチェック
+            if (CheckNearestAerial())
+            {
+                if (_NearestAerial != null)// 取得した最も近い足場がnullではない場合
+                {
+                    if (_CurrentNearestAerial != null)// 現在の最も近い足場nullではない場合
+                    {
+                        _CurrentNearestAerial.GetComponent<AerialController>().ChangeButtonIconEnabled();   // 現在の足場のアイコンを切り替える（非表示）
+                        _NearestAerial.GetComponent<AerialController>().ChangeButtonIconEnabled();          // 取得した足場のアイコンを切り替える（表示）
+
+                        _CurrentNearestAerial = _NearestAerial; // 取得した足場を現在の足場に代入
+                    }
+                    else
+                    {
+                        _NearestAerial.GetComponent<AerialController>().ChangeButtonIconEnabled();  // 取得した足場のアイコンを切り替える（表示）
+
+                        _CurrentNearestAerial = _NearestAerial; // 取得した足場を現在の足場に代入
+                    }
+                }
+                else
+                {
+                    _CurrentNearestAerial.GetComponent<AerialController>().ChangeButtonIconEnabled();   // 現在の足場のアイコンを切り替える（非表示）
+
+                    _CurrentNearestAerial = _NearestAerial; // 取得した足場を現在の足場に代入
+                }
+            }
+
+
 
 
             // キャラクターの移動
