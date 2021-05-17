@@ -101,7 +101,14 @@ public class PlayerController : MonoBehaviour
     {
         return _RayCastHitObject;
     }
-    
+
+    //************************************************
+    //  プレイヤーの向きを返すGetter
+    //************************************************
+    public bool GetPlayerDirection()
+    {
+        return _PlayerDirectionRight;
+    }
 
 
     private void OnControllerColliderHit(ControllerColliderHit hit)

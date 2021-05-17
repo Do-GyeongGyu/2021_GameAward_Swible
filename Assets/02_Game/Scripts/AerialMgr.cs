@@ -21,6 +21,19 @@ public class AerialMgr : MonoBehaviour
         foreach(var target in _AerialList)
         {
             float targetDistance = Vector3.Distance(_Player.transform.position, target.transform.position); // プレイヤーの足場の距離を算出
+            bool targetInSight = false;                                                                     // プレイヤーの視界に入っているか
+
+            if (_Player.GetComponent<PlayerController>().GetPlayerDirection())
+            {
+                if (_Player.transform.position.x < target.transform.position.x)
+                    targetInSight = true;
+            }
+            else
+            {
+                if (_Player.transform.position.x > target.transform.position.x)
+                    targetInSight = true;
+            }
+
 
             //**********************************************************
             //  以下の条件を全て満たしているとき
@@ -28,11 +41,13 @@ public class AerialMgr : MonoBehaviour
             //  2,プレイヤーと足場の距離が既定の距離よりも短い場合
             //  3,足場のステートとステージのステートが一致してる場合
             //  4,足場にプレイヤーがのっていない場合
+            //  5,プレイヤーの視界に入っている場合
             //**********************************************************
             if (targetDistance < minDistance && 
                 targetDistance < _AerialSearchDistance && 
                 (int)target.GetComponent<AerialController>().GetAerialState() == (int)_WorldMgr.GetComponent<WorldMgr>().GetWorldState() &&
-                _Player.GetComponent<PlayerController>().GetRayCastObject() != target.gameObject)
+                _Player.GetComponent<PlayerController>().GetRayCastObject() != target.gameObject &&
+                targetInSight)
             {
                 minDistance     = targetDistance;               // プレイヤーに最も短い距離を代入
                 nearestAerial   = target.transform.gameObject;  // プレイヤーに最も近い足場オブジェクトを返却用変数に格納
@@ -42,6 +57,7 @@ public class AerialMgr : MonoBehaviour
         // 返却
         return nearestAerial;
     }
+
 
 
     // Start is called before the first frame update
