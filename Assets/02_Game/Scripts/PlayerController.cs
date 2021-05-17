@@ -218,7 +218,7 @@ public class PlayerController : MonoBehaviour
                 }
 
                 // 表と裏の変更
-                if (Input.GetKeyDown(KeyCode.Z))
+                if (Input.GetKeyDown(KeyCode.Z) || Input.GetKeyDown(KeyCode.JoystickButton5))
                 {
                     if (_WorldMgr.GetComponent<WorldMgr>().GetWorldState() == WorldMgr.WorldState.STATE_FRONT)
                     {
@@ -230,8 +230,8 @@ public class PlayerController : MonoBehaviour
                     }
                 }
 
-                // 足場の変更（簡易実装）
-                if(Input.GetKeyDown(KeyCode.C))
+                // 足場の変更
+                if(Input.GetKeyDown(KeyCode.C) || Input.GetKeyDown(KeyCode.JoystickButton1))
                 {
                     // 取得したオブジェクトのステート（表裏）を切り替える
                     if (_NearestAerial != null)
