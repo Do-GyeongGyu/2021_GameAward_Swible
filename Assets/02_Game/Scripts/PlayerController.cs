@@ -280,7 +280,7 @@ public class PlayerController : MonoBehaviour
                         _NearestAerial.GetComponent<AerialController>().ChangeState();
                 }
             }
-            else if(!_Controller.isGrounded)
+            else
             {
                 _MoveDirection.x = _H;                                          // キー入力でx成分のみ移動量に加える
                 _MoveDirection.x *= _Speed;                                     // キャラクターの設定スピードを乗算
@@ -292,6 +292,8 @@ public class PlayerController : MonoBehaviour
                 _AerialCollision = null;
 
                 //Debug.Log("a");
+
+                //else if (!_Controller.isGrounded)
             }
             
             // 重力設定
