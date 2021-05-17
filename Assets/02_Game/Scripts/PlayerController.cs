@@ -38,7 +38,11 @@ public class PlayerController : MonoBehaviour
     private GameObject _AerialMgr;                  // AerialMgrの情報格納用
     private GameObject _AerialCollision;            // プレイヤーと触れている足場格納用
     private GameObject _NearestAerial;              // プレイヤーに最も近い足場格納用
-    private GameObject _CurrentNearestAerial;              // 現在プレイヤーに最も近い足場格納用
+    private GameObject _CurrentNearestAerial;       // 現在プレイヤーに最も近い足場格納用
+
+    private Animator _Animator;  // アニメーション遷移管理
+
+    [SerializeField] private bool _PlayerDirectionRight; // プレイヤーの向いてる方向が右
 
 
 
@@ -134,6 +138,12 @@ public class PlayerController : MonoBehaviour
         // _CurrentNearestAerialの初期化
         _CurrentNearestAerial = null;
 
+        // _Animatorを取得
+        _Animator = GetComponent<Animator>();
+
+        // プレイヤーの向き初期化
+        _PlayerDirectionRight = true;
+
     }//Start
 
     // Update is called once per frame
@@ -202,7 +212,23 @@ public class PlayerController : MonoBehaviour
                 }
             }
 
-
+            // プレイヤーの向き変更
+            if(_PlayerDirectionRight)
+            {
+                if(_H < 0.0f)
+                {
+                    this.transform.rotation = Quaternion.Euler(0.0f, -90.0f, 0.0f);
+                    _PlayerDirectionRight = false;
+                }
+            }
+            else
+            {
+                if (_H > 0.0f)
+                {
+                    this.transform.rotation = Quaternion.Euler(0.0f, 90.0f, 0.0f);
+                    _PlayerDirectionRight = true;
+                }
+            }
 
 
             // キャラクターの移動
@@ -210,6 +236,15 @@ public class PlayerController : MonoBehaviour
             {
                 _MoveDirection = new Vector3(_H, 0.0f, 0.0f);                   // キー入力でx成分のみ移動量に加える
                 _MoveDirection *= _Speed;                                       // キャラクターの設定スピードを乗算
+
+                // アニメーション（歩き）
+                if (Input.GetAxis("Horizontal") != 0.0f)
+                    _Animator.SetBool("Speed", true);
+                else
+                    _Animator.SetBool("Speed", false);
+
+                // アニメーション（着地）
+                _Animator.SetBool("Jump", false);
 
                 // ジャンプ
                 if (Input.GetKeyDown(KeyCode.Space) || Input.GetKeyDown(KeyCode.JoystickButton0))// SPACEキーが押されたとき
@@ -242,6 +277,9 @@ public class PlayerController : MonoBehaviour
             {
                 _MoveDirection.x = _H;                                          // キー入力でx成分のみ移動量に加える
                 _MoveDirection.x *= _Speed;                                     // キャラクターの設定スピードを乗算
+
+                // アニメーション（ジャンプ、滞空）
+                _Animator.SetBool("Jump", true);
                 
                 // _AerialCollisionを空にする
                 _AerialCollision = null;
