@@ -48,7 +48,8 @@ public class PlayerController : MonoBehaviour
 
     [SerializeField] private bool _PlayerDirectionRight; // プレイヤーの向いてる方向が右
 
-
+    public Animator FadeMove;
+    public float FadeMovingTime = 1f;
 
     // メンバ関数
     //************************************************
@@ -165,11 +166,34 @@ public class PlayerController : MonoBehaviour
 
     }//Start
 
+    IEnumerator WorldFade()
+    {
+        //キャラコン一時停止
+
+        //アニメーション再生
+        FadeMove.SetTrigger("Start");
+
+        //待機
+        yield return new WaitForSeconds(FadeMovingTime);
+
+        if (_WorldMgr.GetComponent<WorldMgr>().GetWorldState() == WorldMgr.WorldState.STATE_FRONT)
+        {
+            _WorldMgr.GetComponent<WorldMgr>().SetWorldState(WorldMgr.WorldState.STATE_BACK);
+        }
+        else
+        {
+            _WorldMgr.GetComponent<WorldMgr>().SetWorldState(WorldMgr.WorldState.STATE_FRONT);
+        }
+    }
+
+    public void MoveWorld()
+    {
+        StartCoroutine(WorldFade());
+    }
+
     // Update is called once per frame
     void Update()
     {
-        
-
         if (_CharactorState == CharactorState.STATE_NORMAL)// 通常状態
         {
             // キー入力取得
@@ -274,14 +298,16 @@ public class PlayerController : MonoBehaviour
                 // 表と裏の変更
                 if (Input.GetKeyDown(KeyCode.Z) || Input.GetKeyDown(KeyCode.JoystickButton5))
                 {
-                    if (_WorldMgr.GetComponent<WorldMgr>().GetWorldState() == WorldMgr.WorldState.STATE_FRONT)
-                    {
-                        _WorldMgr.GetComponent<WorldMgr>().SetWorldState(WorldMgr.WorldState.STATE_BACK);
-                    }
-                    else
-                    {
-                        _WorldMgr.GetComponent<WorldMgr>().SetWorldState(WorldMgr.WorldState.STATE_FRONT);
-                    }
+                    MoveWorld();
+
+                    //if (_WorldMgr.GetComponent<WorldMgr>().GetWorldState() == WorldMgr.WorldState.STATE_FRONT)
+                    //{
+                    //    _WorldMgr.GetComponent<WorldMgr>().SetWorldState(WorldMgr.WorldState.STATE_BACK);
+                    //}
+                    //else
+                    //{
+                    //    _WorldMgr.GetComponent<WorldMgr>().SetWorldState(WorldMgr.WorldState.STATE_FRONT);
+                    //}
                 }
 
                 // 足場の変更

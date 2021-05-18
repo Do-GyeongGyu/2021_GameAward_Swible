@@ -20,7 +20,7 @@ public class SceneMgr : MonoBehaviour
  
     IEnumerator LoadStage(int StageIndex)
     {
-        //アニメーション再生
+        //フェードアニメーション再生
         FadeMove.SetTrigger("Start");
 
         //待機
