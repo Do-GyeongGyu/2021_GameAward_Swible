@@ -1,6 +1,10 @@
-﻿using System.Collections;
+﻿using System;
+using System.Collections;
 using System.Collections.Generic;
+//using System.Diagnostics;
+using System.Security.Cryptography;
 using UnityEngine;
+using static UnityEngine.Debug;
 
 public class PlayerController : MonoBehaviour
 {
@@ -150,6 +154,14 @@ public class PlayerController : MonoBehaviour
 
         // プレイヤーの向き初期化
         _PlayerDirectionRight = true;
+
+        if(LoadManager.IsFirst == false)
+        {
+            Debug.Log("来たんゴ");
+            //プレイヤー位置ロード
+            transform.position = LoadManager.playerpos;
+            LoadManager.IsFirst = true;
+        }
 
     }//Start
 

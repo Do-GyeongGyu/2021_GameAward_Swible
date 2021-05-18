@@ -1240,6 +1240,11 @@ PrefabInstance:
       propertyPath: m_RenderMode
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 5929301861358911415, guid: 4ec7cedeadd53184a94f63c66f50fee3,
+        type: 3}
+      propertyPath: Player
+      value: 
+      objectReference: {fileID: 970596351}
     - target: {fileID: 6381223677625307590, guid: 4ec7cedeadd53184a94f63c66f50fee3,
         type: 3}
       propertyPath: m_UiScaleMode
@@ -2552,6 +2557,12 @@ PrefabInstance:
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 120e446482a8dd740a62e7dba7882519, type: 3}
+--- !u!1 &970596351 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 2625623297500657194, guid: 120e446482a8dd740a62e7dba7882519,
+    type: 3}
+  m_PrefabInstance: {fileID: 970596350}
+  m_PrefabAsset: {fileID: 0}
 --- !u!43 &1248282833
 Mesh:
   m_ObjectHideFlags: 0
