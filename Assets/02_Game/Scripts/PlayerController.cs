@@ -293,6 +293,10 @@ public class PlayerController : MonoBehaviour
                 if (Input.GetKeyDown(KeyCode.Space) || Input.GetKeyDown(KeyCode.JoystickButton0))// SPACEキーが押されたとき
                 {
                     _MoveDirection.y = _JumpPower;  // y成分にキャラクターのジャンプ力を加算
+
+                    // アニメーション（ジャンプ、滞空）
+                    _Animator.SetBool("Jump", true);
+
                 }
 
                 // 表と裏の変更
@@ -323,8 +327,7 @@ public class PlayerController : MonoBehaviour
                 _MoveDirection.x = _H;                                          // キー入力でx成分のみ移動量に加える
                 _MoveDirection.x *= _Speed;                                     // キャラクターの設定スピードを乗算
 
-                // アニメーション（ジャンプ、滞空）
-                _Animator.SetBool("Jump", true);
+
                 
                 // _AerialCollisionを空にする
                 _AerialCollision = null;
