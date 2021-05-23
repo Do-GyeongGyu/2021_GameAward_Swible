@@ -65,6 +65,7 @@ public class AerialController : MonoBehaviour
         if (_ButtonIconEnabled)
             _ButtonIcon.SetActive(true);
         else
+          if (_ButtonIcon != null)    
             _ButtonIcon.SetActive(false);
     }
 }
