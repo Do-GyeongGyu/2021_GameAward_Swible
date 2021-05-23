@@ -47,6 +47,9 @@ public class PlayerController : MonoBehaviour
     private Animator _Animator;  // アニメーション遷移管理
 
     [SerializeField] private bool _PlayerDirectionRight; // プレイヤーの向いてる方向が右
+    [SerializeField] private GameObject effectPrefab;//エフェクトを入れる所
+    [SerializeField] private GameObject effectPrefabState;//エフェクトを入れる所
+
 
     public Animator FadeMove;
     public float FadeMovingTime = 1f;
@@ -172,6 +175,8 @@ public class PlayerController : MonoBehaviour
 
         //アニメーション再生
         FadeMove.SetTrigger("Start");
+
+       
 
         //待機
         yield return new WaitForSeconds(FadeMovingTime);
@@ -303,6 +308,8 @@ public class PlayerController : MonoBehaviour
                 if (Input.GetKeyDown(KeyCode.Z) || Input.GetKeyDown(KeyCode.JoystickButton5))
                 {
                     MoveWorld();
+                    GameObject effect = Instantiate(effectPrefab, transform.position+ new Vector3(0.0f, 1.0f, 0.0f), Quaternion.identity);
+                    Destroy(effect, 2.0f);
 
                     //if (_WorldMgr.GetComponent<WorldMgr>().GetWorldState() == WorldMgr.WorldState.STATE_FRONT)
                     //{
@@ -320,6 +327,9 @@ public class PlayerController : MonoBehaviour
                     // 取得したオブジェクトのステート（表裏）を切り替える
                     if (_NearestAerial != null)
                         _NearestAerial.GetComponent<AerialController>().ChangeState();
+                        GameObject effect = Instantiate(effectPrefabState, _NearestAerial.transform.position + new Vector3(2.5f, 1.0f, -1.0f), Quaternion.identity);
+                        Destroy(effect, 2.0f);
+
                 }
             }
             else
