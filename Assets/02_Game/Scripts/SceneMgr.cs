@@ -6,18 +6,39 @@ using UnityEngine.SceneManagement;
 public class SceneMgr : MonoBehaviour
 {
     public Animator FadeMove;
-    public float MovingTime = 1f;
+    private float MovingTime = 5f;
+    private GameObject MainCam;
+    private GameObject ClearText;
+    private bool Clear = false;
 
-    // Update is called once per frame
-    void Update()
+    void Start()
     {
-        if(Input.GetKeyDown(KeyCode.LeftShift))
+        MainCam = GameObject.FindGameObjectWithTag("MainCamera");
+        MainCam.GetComponent<CameraSetting>().enabled = true;
+        ClearText = GameObject.FindGameObjectWithTag("ClearText");
+        ClearText.SetActive(false);
+    }
+
+  
+
+    void OnTriggerEnter(Collider other)
+    {
+        if(Clear==false)
         {
-            FadeWithLoadScene();
+            if (other.gameObject.tag == "Player")
+            {
+                MainCam.GetComponent<CameraSetting>().enabled = false;
+
+                MainCam.transform.position = MainCam.transform.position + new Vector3(0.0f, 0.0f, 7.0f);
+
+                ClearText.SetActive(true);
+
+                FadeWithLoadScene();
+            }
+            Clear = true;
         }
     }
 
- 
     IEnumerator LoadStage(int StageIndex)
     {
         //フェードアニメーション再生
@@ -28,14 +49,6 @@ public class SceneMgr : MonoBehaviour
 
         //ステージロード
         SceneManager.LoadScene(StageIndex);
-    }    
-
-    void OnTriggerEnter(Collider other)
-    {
-        if(other.gameObject.tag=="Player")
-        {
-            FadeWithLoadScene();
-        }
     }
 
     public void FadeWithLoadScene()

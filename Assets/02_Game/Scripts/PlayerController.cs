@@ -326,9 +326,11 @@ public class PlayerController : MonoBehaviour
                 {
                     // 取得したオブジェクトのステート（表裏）を切り替える
                     if (_NearestAerial != null)
+                    {
                         _NearestAerial.GetComponent<AerialController>().ChangeState();
                         GameObject effect = Instantiate(effectPrefabState, _NearestAerial.transform.position + new Vector3(2.5f, 1.0f, -1.0f), Quaternion.identity);
                         Destroy(effect, 2.0f);
+                    }
 
                 }
             }
