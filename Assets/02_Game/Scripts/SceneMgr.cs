@@ -6,27 +6,29 @@ using UnityEngine.SceneManagement;
 public class SceneMgr : MonoBehaviour
 {
     public Animator FadeMove;
-    private float MovingTime = 5f;
+    private float MovingTime = 5.0f;
     private GameObject MainCam;
     private GameObject ClearText;
     private bool Clear = false;
+    public string NextSceanName;
+
 
     void Start()
     {
         MainCam = GameObject.FindGameObjectWithTag("MainCamera");
         MainCam.GetComponent<CameraSetting>().enabled = true;
-        ClearText = GameObject.FindGameObjectWithTag("ClearText");
+        ClearText = transform.Find("ClearText").gameObject;
         ClearText.SetActive(false);
         Clear = false;
     }
 
   
 
-    void OnTriggerEnter(Collider other)
+    private void OnTriggerEnter(Collider other)
     {
-        if(Clear==false)
+        if (Clear == false)
         {
-            if (other.gameObject.tag == "Player")
+            if (other.CompareTag("Player"))
             {
                 MainCam.GetComponent<CameraSetting>().enabled = false;
 

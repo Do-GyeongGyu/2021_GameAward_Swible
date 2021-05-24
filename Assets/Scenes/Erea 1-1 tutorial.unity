@@ -4402,6 +4402,11 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 6908530365735058135, guid: 8fe907900aaa51f4f9e1004f915c2cd1,
+        type: 3}
+      propertyPath: m_Volume
+      value: 0.49
+      objectReference: {fileID: 0}
     - target: {fileID: 6908530365735058137, guid: 8fe907900aaa51f4f9e1004f915c2cd1,
         type: 3}
       propertyPath: m_Name
@@ -4446,6 +4451,11 @@ PrefabInstance:
       propertyPath: switchSE
       value: 
       objectReference: {fileID: 8300000, guid: 924bef1135de56440a13ae5ac33b90c1, type: 3}
+    - target: {fileID: 6997877118981328627, guid: 120e446482a8dd740a62e7dba7882519,
+        type: 3}
+      propertyPath: m_Volume
+      value: 0.49
+      objectReference: {fileID: 0}
     - target: {fileID: 6997877118981328629, guid: 120e446482a8dd740a62e7dba7882519,
         type: 3}
       propertyPath: m_RootOrder
