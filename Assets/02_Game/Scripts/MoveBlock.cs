@@ -5,7 +5,7 @@ using UnityEngine;
 public class MoveBlock : MonoBehaviour
 {
 
-    public float length = 2f;
+    public float length = 2.0f;
 
     private Rigidbody rb;
     private Vector3 Pos;
