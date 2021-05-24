@@ -17,6 +17,7 @@ public class SceneMgr : MonoBehaviour
         MainCam.GetComponent<CameraSetting>().enabled = true;
         ClearText = GameObject.FindGameObjectWithTag("ClearText");
         ClearText.SetActive(false);
+        Clear = false;
     }
 
   
