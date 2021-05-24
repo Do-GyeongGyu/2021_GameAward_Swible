@@ -1041,7 +1041,7 @@ PrefabInstance:
         type: 3}
       propertyPath: Player
       value: 
-      objectReference: {fileID: 0}
+      objectReference: {fileID: 800318093}
     - target: {fileID: 6381223677625307590, guid: 4ec7cedeadd53184a94f63c66f50fee3,
         type: 3}
       propertyPath: m_UiScaleMode
@@ -1996,6 +1996,12 @@ Transform:
   m_Father: {fileID: 637872289}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!1 &800318093 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 6997877118981328637, guid: 120e446482a8dd740a62e7dba7882519,
+    type: 3}
+  m_PrefabInstance: {fileID: 1753682545}
+  m_PrefabAsset: {fileID: 0}
 --- !u!1001 &819509195
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -2012,7 +2018,7 @@ PrefabInstance:
         type: 3}
       propertyPath: FadeMove
       value: 
-      objectReference: {fileID: 1251008097}
+      objectReference: {fileID: 0}
     - target: {fileID: 4917145650825357869, guid: b1693355267c4054da0ca47cd5103ad3,
         type: 3}
       propertyPath: m_RootOrder
@@ -2388,12 +2394,6 @@ PrefabInstance:
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 06b36ca9676503b47998dad1613c274d, type: 3}
---- !u!95 &1251008097 stripped
-Animator:
-  m_CorrespondingSourceObject: {fileID: 8320567789249448215, guid: 06b36ca9676503b47998dad1613c274d,
-    type: 3}
-  m_PrefabInstance: {fileID: 1251008096}
-  m_PrefabAsset: {fileID: 0}
 --- !u!1001 &1274122758
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -3672,6 +3672,26 @@ PrefabInstance:
         type: 3}
       propertyPath: m_LocalPosition.z
       value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 6997877118981328624, guid: 120e446482a8dd740a62e7dba7882519,
+        type: 3}
+      propertyPath: JumpSE
+      value: 
+      objectReference: {fileID: 8300000, guid: 06dc199725179694092f09db7f8ecb32, type: 3}
+    - target: {fileID: 6997877118981328624, guid: 120e446482a8dd740a62e7dba7882519,
+        type: 3}
+      propertyPath: WarpSE
+      value: 
+      objectReference: {fileID: 8300000, guid: 20f1c551fb62ab4488b5a41abdb3b25f, type: 3}
+    - target: {fileID: 6997877118981328624, guid: 120e446482a8dd740a62e7dba7882519,
+        type: 3}
+      propertyPath: switchSE
+      value: 
+      objectReference: {fileID: 8300000, guid: 924bef1135de56440a13ae5ac33b90c1, type: 3}
+    - target: {fileID: 6997877118981328629, guid: 120e446482a8dd740a62e7dba7882519,
+        type: 3}
+      propertyPath: m_LocalPosition.x
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 6997877119454050523, guid: 120e446482a8dd740a62e7dba7882519,
         type: 3}

@@ -29,6 +29,10 @@ public class PlayerController : MonoBehaviour
     public float _Gravity       = 20.0f;                            // 重力の大きさ
     public Vector3 _DefaultPos  = new Vector3(0.0f, 0.0f, 0.0f);    // プレイヤーの初期位置
     public bool _IsFront        = true;                             // 表ステージかどうか
+    public AudioClip switchSE;                                       //スイッチSE用
+    public AudioClip JumpSE;                                        //ジャンプSE用
+    public AudioClip WarpSE;                                        //ワープSE用
+
 
     private Ray _Ray;                                               // 当たり判定取得用のレイ
     private GameObject _RayCastHitObject;                           // レイが当たったオブジェクトを取得するための変数
@@ -50,6 +54,7 @@ public class PlayerController : MonoBehaviour
     [SerializeField] private GameObject effectPrefab;//エフェクトを入れる所
     [SerializeField] private GameObject effectPrefabState;//エフェクトを入れる所
 
+    AudioSource audioSource;
 
     public Animator FadeMove;
     public float FadeMovingTime = 1f;
@@ -166,6 +171,9 @@ public class PlayerController : MonoBehaviour
             transform.position = LoadManager.playerpos;
             LoadManager.IsFirst = true;
         }
+
+        //オーディオ取得
+        audioSource = GetComponent<AudioSource>();
 
     }//Start
 
@@ -302,6 +310,8 @@ public class PlayerController : MonoBehaviour
                     // アニメーション（ジャンプ、滞空）
                     _Animator.SetBool("Jump", true);
 
+                    audioSource.PlayOneShot(JumpSE);
+
                 }
 
                 // 表と裏の変更
@@ -310,6 +320,9 @@ public class PlayerController : MonoBehaviour
                     MoveWorld();
                     GameObject effect = Instantiate(effectPrefab, transform.position+ new Vector3(0.0f, 1.0f, 0.0f), Quaternion.identity);
                     Destroy(effect, 2.0f);
+
+                    audioSource.PlayOneShot(WarpSE);
+
 
                     //if (_WorldMgr.GetComponent<WorldMgr>().GetWorldState() == WorldMgr.WorldState.STATE_FRONT)
                     //{
@@ -322,7 +335,7 @@ public class PlayerController : MonoBehaviour
                 }
 
                 // 足場の変更
-                if(Input.GetKeyDown(KeyCode.C) || Input.GetKeyDown(KeyCode.JoystickButton1))
+                if (Input.GetKeyDown(KeyCode.C) || Input.GetKeyDown(KeyCode.JoystickButton1))
                 {
                     // 取得したオブジェクトのステート（表裏）を切り替える
                     if (_NearestAerial != null)
@@ -330,6 +343,8 @@ public class PlayerController : MonoBehaviour
                         _NearestAerial.GetComponent<AerialController>().ChangeState();
                         GameObject effect = Instantiate(effectPrefabState, _NearestAerial.transform.position + new Vector3(2.5f, 1.0f, -1.0f), Quaternion.identity);
                         Destroy(effect, 2.0f);
+
+                        audioSource.PlayOneShot(switchSE);
                     }
 
                 }

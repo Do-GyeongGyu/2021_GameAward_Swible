@@ -2581,6 +2581,21 @@ PrefabInstance:
       propertyPath: m_LocalPosition.z
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 6997877118981328624, guid: 120e446482a8dd740a62e7dba7882519,
+        type: 3}
+      propertyPath: JumpSE
+      value: 
+      objectReference: {fileID: 8300000, guid: 06dc199725179694092f09db7f8ecb32, type: 3}
+    - target: {fileID: 6997877118981328624, guid: 120e446482a8dd740a62e7dba7882519,
+        type: 3}
+      propertyPath: WarpSE
+      value: 
+      objectReference: {fileID: 8300000, guid: 20f1c551fb62ab4488b5a41abdb3b25f, type: 3}
+    - target: {fileID: 6997877118981328624, guid: 120e446482a8dd740a62e7dba7882519,
+        type: 3}
+      propertyPath: switchSE
+      value: 
+      objectReference: {fileID: 8300000, guid: 924bef1135de56440a13ae5ac33b90c1, type: 3}
     - target: {fileID: 6997877119454050523, guid: 120e446482a8dd740a62e7dba7882519,
         type: 3}
       propertyPath: m_LocalPosition.z
