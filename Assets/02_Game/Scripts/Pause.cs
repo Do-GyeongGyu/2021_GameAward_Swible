@@ -35,14 +35,14 @@ public class Pause : MonoBehaviour
         switch (Timeflag)
         {
             case 0:
-                if (Input.GetKeyDown(KeyCode.Escape))
+                if (Input.GetKeyDown(KeyCode.Escape) || Input.GetKeyDown(KeyCode.JoystickButton7))
                 {
                     pause();
                     Timeflag = 1;
                 }
                 break;
             case 1:
-                if (Input.GetKeyDown(KeyCode.Escape))
+                if (Input.GetKeyDown(KeyCode.Escape) || Input.GetKeyDown(KeyCode.JoystickButton7))
                 {
                     resume();
                     Timeflag = 0;
