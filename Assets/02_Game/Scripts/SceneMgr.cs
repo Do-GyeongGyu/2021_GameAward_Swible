@@ -7,39 +7,34 @@ public class SceneMgr : MonoBehaviour
 {
     public Animator FadeMove;
     private float MovingTime = 5.0f;
-    private GameObject MainCam;
-    private GameObject ClearText;
-    private bool Clear = false;
+
     public string NextSceanName;
 
 
     void Start()
     {
-        MainCam = GameObject.FindGameObjectWithTag("MainCamera");
-        MainCam.GetComponent<CameraSetting>().enabled = true;
-        ClearText = transform.Find("ClearText").gameObject;
-        ClearText.SetActive(false);
-        Clear = false;
+        //MainCam = GameObject.FindGameObjectWithTag("MainCamera");
+        //MainCam.GetComponent<CameraSetting>().enabled = true;
+        //ClearText = transform.Find("ClearText").gameObject;
+        //ClearText.SetActive(false);
+        //Clear = false;
     }
 
-  
+
 
     private void OnTriggerEnter(Collider other)
     {
-        if (Clear == false)
+        SceneManager.LoadScene(NextSceanName);
+    }     
+
+    void Update()
+    {
+
+        if (Input.GetKeyDown(KeyCode.R) || Input.GetKeyDown(KeyCode.JoystickButton1))
         {
-            if (other.CompareTag("Player"))
-            {
-                MainCam.GetComponent<CameraSetting>().enabled = false;
-
-                MainCam.transform.position = MainCam.transform.position + new Vector3(0.0f, 0.0f, 7.0f);
-
-                ClearText.SetActive(true);
-
-                FadeWithLoadScene();
-            }
-            Clear = true;
+            SceneManager.LoadScene(NextSceanName);
         }
+
     }
 
     IEnumerator LoadStage(int StageIndex)
@@ -58,5 +53,7 @@ public class SceneMgr : MonoBehaviour
     {
         StartCoroutine(LoadStage(SceneManager.GetActiveScene().buildIndex + 1));
     }
+
+
 
 }

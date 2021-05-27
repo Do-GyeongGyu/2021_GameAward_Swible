@@ -130,6 +130,16 @@ public class PlayerController : MonoBehaviour
         {
             _AerialCollision = hit.gameObject;
         }
+
+        if (hit.gameObject.tag == "MoveStage")
+        {
+            transform.parent = hit.gameObject.transform;
+        }
+        else
+        {
+            transform.parent = null;
+            _Speed = 5.0f;
+        }
     }
 
 

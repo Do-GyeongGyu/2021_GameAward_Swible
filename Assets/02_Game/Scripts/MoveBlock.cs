@@ -20,7 +20,7 @@ public class MoveBlock : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        rb.MovePosition(new Vector3(Pos.x, Pos.y + Mathf.PingPong(Time.time, length), Pos.z));
+        rb.MovePosition(new Vector3(Pos.x + Mathf.PingPong(Time.time, length), Pos.y , Pos.z));
     }
 
 }

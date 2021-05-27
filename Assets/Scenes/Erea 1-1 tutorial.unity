@@ -1193,6 +1193,11 @@ PrefabInstance:
       propertyPath: m_Enabled
       value: 1
       objectReference: {fileID: 0}
+    - target: {fileID: 5033327804044914214, guid: 06b36ca9676503b47998dad1613c274d,
+        type: 3}
+      propertyPath: NextSceanName
+      value: Erea 1-2
+      objectReference: {fileID: 0}
     - target: {fileID: 5486847581763859954, guid: 06b36ca9676503b47998dad1613c274d,
         type: 3}
       propertyPath: m_LocalPosition.z
@@ -3645,6 +3650,11 @@ PrefabInstance:
       propertyPath: FadeMove
       value: 
       objectReference: {fileID: 1969627227}
+    - target: {fileID: 4917145650825357867, guid: b1693355267c4054da0ca47cd5103ad3,
+        type: 3}
+      propertyPath: NextSceanName
+      value: Clear
+      objectReference: {fileID: 0}
     - target: {fileID: 4917145650825357869, guid: b1693355267c4054da0ca47cd5103ad3,
         type: 3}
       propertyPath: m_RootOrder

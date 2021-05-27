@@ -2030,6 +2030,11 @@ PrefabInstance:
       propertyPath: FadeMove
       value: 
       objectReference: {fileID: 192461097}
+    - target: {fileID: 4917145650825357867, guid: b1693355267c4054da0ca47cd5103ad3,
+        type: 3}
+      propertyPath: NextSceanName
+      value: Clear1-2
+      objectReference: {fileID: 0}
     - target: {fileID: 4917145650825357869, guid: b1693355267c4054da0ca47cd5103ad3,
         type: 3}
       propertyPath: m_RootOrder
@@ -2392,6 +2397,11 @@ PrefabInstance:
         type: 3}
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 5033327804044914214, guid: 06b36ca9676503b47998dad1613c274d,
+        type: 3}
+      propertyPath: NextSceanName
+      value: Erea 1-3
       objectReference: {fileID: 0}
     - target: {fileID: 8218935569281295808, guid: 06b36ca9676503b47998dad1613c274d,
         type: 3}
