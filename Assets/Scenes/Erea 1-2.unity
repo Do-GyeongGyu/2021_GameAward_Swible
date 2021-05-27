@@ -3709,6 +3709,16 @@ PrefabInstance:
       propertyPath: switchSE
       value: 
       objectReference: {fileID: 8300000, guid: 924bef1135de56440a13ae5ac33b90c1, type: 3}
+    - target: {fileID: 6997877118981328624, guid: 120e446482a8dd740a62e7dba7882519,
+        type: 3}
+      propertyPath: _DefaultPos.y
+      value: 2
+      objectReference: {fileID: 0}
+    - target: {fileID: 6997877118981328624, guid: 120e446482a8dd740a62e7dba7882519,
+        type: 3}
+      propertyPath: _DefaultPos.z
+      value: -2.5
+      objectReference: {fileID: 0}
     - target: {fileID: 6997877118981328629, guid: 120e446482a8dd740a62e7dba7882519,
         type: 3}
       propertyPath: m_RootOrder
