@@ -1931,7 +1931,7 @@ PrefabInstance:
     - target: {fileID: 565271142304639975, guid: 7c6f442f00d403e478dec89f34a21e0f,
         type: 3}
       propertyPath: NextSceanName
-      value: Clear1-7
+      value: EndScene
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 7c6f442f00d403e478dec89f34a21e0f, type: 3}
@@ -3151,17 +3151,9 @@ MonoBehaviour:
   assetGuid: 
   m_Mesh: {fileID: 1871605474}
   m_IsSelectable: 1
-  m_SelectedFaces: 01000000
-  m_SelectedEdges:
-  - a: 4
-    b: 5
-  - a: 6
-    b: 4
-  - a: 5
-    b: 7
-  - a: 7
-    b: 6
-  m_SelectedVertices: 04000000050000000600000007000000
+  m_SelectedFaces: 
+  m_SelectedEdges: []
+  m_SelectedVertices: 
 --- !u!1001 &645485678
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -8339,7 +8331,7 @@ Mesh:
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
-  m_Name: pb_Mesh-40246
+  m_Name: pb_Mesh16198
   serializedVersion: 10
   m_SubMeshes:
   - serializedVersion: 2

@@ -787,9 +787,9 @@ MonoBehaviour:
   _Gravity: 20
   _DefaultPos: {x: 1, y: 2, z: -1}
   _IsFront: 1
-  switchSE: {fileID: 0}
-  JumpSE: {fileID: 0}
-  WarpSE: {fileID: 0}
+  switchSE: {fileID: 8300000, guid: 924bef1135de56440a13ae5ac33b90c1, type: 3}
+  JumpSE: {fileID: 8300000, guid: e1b74c162d76f0e42948b538da0cc363, type: 3}
+  WarpSE: {fileID: 8300000, guid: c3ba0aaf433db2b4ea36ef1975481aa9, type: 3}
   _RayDistance: 1
   _PlayerDirectionRight: 0
   effectPrefab: {fileID: 100002, guid: db50ab1c866680e4bb870bf5eb72dd3d, type: 3}
