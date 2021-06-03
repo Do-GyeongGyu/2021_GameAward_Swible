@@ -54,9 +54,6 @@ EditorBuildSettings:
     path: Assets/Scenes/Erea 1-8.unity
     guid: 1a9f4af032df2b748bfd6de59e67eb93
   - enabled: 1
-    path: Assets/Scenes/Clear/Clear1-8.unity
-    guid: 508dd20fcf92a744c8b87d42afbb7728
-  - enabled: 1
     path: Assets/Scenes/EndScene.unity
     guid: c829a4f43572a004992015d7c3d8ebf1
   m_configObjects: {}

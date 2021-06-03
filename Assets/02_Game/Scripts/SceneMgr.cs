@@ -30,11 +30,6 @@ public class SceneMgr : MonoBehaviour
     void Update()
     {
 
-        if (Input.GetKeyDown(KeyCode.R) || Input.GetKeyDown(KeyCode.JoystickButton1))
-        {
-            SceneManager.LoadScene(NextSceanName);
-        }
-
     }
 
     IEnumerator LoadStage(int StageIndex)

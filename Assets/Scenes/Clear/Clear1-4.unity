@@ -1174,6 +1174,7 @@ GameObject:
   m_Component:
   - component: {fileID: 1163038869952847800}
   - component: {fileID: 5033327803451964167}
+  - component: {fileID: 8218935569741115618}
   m_Layer: 0
   m_Name: SceneMgr
   m_TagString: Untagged
@@ -1181,6 +1182,19 @@ GameObject:
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
   m_IsActive: 1
+--- !u!114 &8218935569741115618
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 8218935569741115617}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 2472a992d5f56994fb7182bb87651089, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  NextSceanName: Erea 1-5
 --- !u!95 &8320567787561753654
 Animator:
   serializedVersion: 3
