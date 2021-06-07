@@ -1194,7 +1194,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 2472a992d5f56994fb7182bb87651089, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  NextSceanName: Erea 1-7
+  NextSceanName: Erea 1-8
 --- !u!95 &8320567787561753654
 Animator:
   serializedVersion: 3
