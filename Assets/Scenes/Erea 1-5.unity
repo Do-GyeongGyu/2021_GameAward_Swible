@@ -2457,6 +2457,12 @@ PrefabInstance:
       propertyPath: m_LocalPosition.z
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 6997877117828253289, guid: 120e446482a8dd740a62e7dba7882519,
+        type: 3}
+      propertyPath: m_Sprite
+      value: 
+      objectReference: {fileID: 21300000, guid: 6db4c82d79744154aa3d8b9f36076999,
+        type: 3}
     - target: {fileID: 6997877118981328624, guid: 120e446482a8dd740a62e7dba7882519,
         type: 3}
       propertyPath: JumpSE

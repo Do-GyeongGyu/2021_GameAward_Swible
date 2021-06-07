@@ -5952,16 +5952,22 @@ PrefabInstance:
       propertyPath: m_LocalPosition.z
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 6997877117828253289, guid: 120e446482a8dd740a62e7dba7882519,
+        type: 3}
+      propertyPath: m_Sprite
+      value: 
+      objectReference: {fileID: 21300000, guid: 6db4c82d79744154aa3d8b9f36076999,
+        type: 3}
     - target: {fileID: 6997877118981328624, guid: 120e446482a8dd740a62e7dba7882519,
         type: 3}
       propertyPath: JumpSE
       value: 
-      objectReference: {fileID: 8300000, guid: 06dc199725179694092f09db7f8ecb32, type: 3}
+      objectReference: {fileID: 8300000, guid: e1b74c162d76f0e42948b538da0cc363, type: 3}
     - target: {fileID: 6997877118981328624, guid: 120e446482a8dd740a62e7dba7882519,
         type: 3}
       propertyPath: WarpSE
       value: 
-      objectReference: {fileID: 8300000, guid: 20f1c551fb62ab4488b5a41abdb3b25f, type: 3}
+      objectReference: {fileID: 8300000, guid: c3ba0aaf433db2b4ea36ef1975481aa9, type: 3}
     - target: {fileID: 6997877118981328624, guid: 120e446482a8dd740a62e7dba7882519,
         type: 3}
       propertyPath: switchSE
