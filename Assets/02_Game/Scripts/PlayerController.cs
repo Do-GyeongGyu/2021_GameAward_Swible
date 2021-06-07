@@ -150,6 +150,7 @@ public class PlayerController : MonoBehaviour
         {
             _MoveDirection = new Vector3(_H, 0.0f, 0.0f);                   // キー入力でx成分のみ移動量に加える
             _MoveDirection *= _Speed;                                       // キャラクターの設定スピードを乗算
+            _Rate = 0;
         }
     }
 
