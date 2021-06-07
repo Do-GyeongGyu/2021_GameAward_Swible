@@ -25,7 +25,7 @@ public class PlayerController : MonoBehaviour
     public float _Speed         = 0.0f;                             // キャラクターの移動速度
     public float _MaxSpeed      = 5.0f;
     public float _JumpPower     = 10.0f;                            // ジャンプ力
-    public float _Rate          = 0.1f;
+    public float _Rate          = 0.0f;
     public float _Gravity       = 20.0f;                            // 重力の大きさ
     public Vector3 _DefaultPos  = new Vector3(0.0f, 0.0f, 0.0f);    // プレイヤーの初期位置
     public bool _IsFront        = true;                             // 表ステージかどうか
@@ -140,6 +140,17 @@ public class PlayerController : MonoBehaviour
             transform.parent = null;
             _Speed = 5.0f;
         }
+
+        if(hit.gameObject.tag == "Ice")
+        {
+            _MoveDirection = new Vector3((_H / 2 + _Rate) / 2, 0.0f, 0.0f);     // キー入力でx成分のみ移動量に加える
+            _MoveDirection *= _Speed;                                       // キャラクターの設定スピードを乗算
+        }
+        else
+        {
+            _MoveDirection = new Vector3(_H, 0.0f, 0.0f);                   // キー入力でx成分のみ移動量に加える
+            _MoveDirection *= _Speed;                                       // キャラクターの設定スピードを乗算
+        }
     }
 
 
@@ -234,6 +245,46 @@ public class PlayerController : MonoBehaviour
                                                  //        _Speed = _MaxSpeed;
                                                  //}
 
+            if(_H < 0)
+            {
+                _Rate -= 0.1f;
+
+                if (_Rate < -2.0f)
+                    _Rate = -2.0f;
+            }
+            else if(_H > 0)
+            {
+                _Rate += 0.1f;
+
+                if (_Rate > 2.0f)
+                    _Rate = 2.0f;
+            }
+            else
+            {
+                if(_Rate < 0)
+                {
+                    _Rate += 0.005f;
+
+                    if (_Rate > -0.01f)
+                        _Rate = 0;
+                }
+                else if(_Rate > 0)
+                {
+                    _Rate -= 0.005f;
+
+                    if (_Rate < 0.01f)
+                        _Rate = 0;
+                }
+                else
+                {
+                    _Rate = 0;
+                }
+            }
+
+            Debug.Log(_Rate);
+
+
+
             // Rayの更新
             _Ray = new Ray(this.transform.position, -this.transform.up);
             RaycastHit rayCastHit;
@@ -300,8 +351,8 @@ public class PlayerController : MonoBehaviour
             // キャラクターの移動
             if (_Controller.isGrounded)// キャラクターが地面についているとき
             {
-                _MoveDirection = new Vector3(_H, 0.0f, 0.0f);                   // キー入力でx成分のみ移動量に加える
-                _MoveDirection *= _Speed;                                       // キャラクターの設定スピードを乗算
+                //_MoveDirection = new Vector3(_H, 0.0f, 0.0f);     // キー入力でx成分のみ移動量に加える
+                //_MoveDirection *= _Speed;                                       // キャラクターの設定スピードを乗算
 
                 // アニメーション（歩き）
                 if (Input.GetAxis("Horizontal") != 0.0f)
@@ -361,7 +412,7 @@ public class PlayerController : MonoBehaviour
             }
             else
             {
-                _MoveDirection.x = _H;                                          // キー入力でx成分のみ移動量に加える
+                _MoveDirection.x = (_H + _Rate / 2) / 2;                                          // キー入力でx成分のみ移動量に加える
                 _MoveDirection.x *= _Speed;                                     // キャラクターの設定スピードを乗算
 
 
