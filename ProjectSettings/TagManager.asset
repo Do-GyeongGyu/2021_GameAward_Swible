@@ -8,7 +8,11 @@ TagManager:
   - Goal
   - Aerial
   - Ice
+<<<<<<< HEAD
   - Other
+=======
+  - Ground
+>>>>>>> 35bbfd3793c39ad3763b436e1191648ca5f7b588
   layers:
   - Default
   - TransparentFX
