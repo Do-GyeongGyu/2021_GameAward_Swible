@@ -150,6 +150,7 @@ public class PlayerController : MonoBehaviour
         {
             _MoveDirection = new Vector3(_H, 0.0f, 0.0f);                   // キー入力でx成分のみ移動量に加える
             _MoveDirection *= _Speed;                                       // キャラクターの設定スピードを乗算
+            _Rate = 0;
         }
     }
 
@@ -281,7 +282,7 @@ public class PlayerController : MonoBehaviour
                 }
             }
 
-            Debug.Log(_Rate);
+            //Debug.Log(_Rate);
 
 
 
@@ -351,9 +352,20 @@ public class PlayerController : MonoBehaviour
             // キャラクターの移動
             if (_Controller.isGrounded)// キャラクターが地面についているとき
             {
-                //_MoveDirection = new Vector3(_H, 0.0f, 0.0f);     // キー入力でx成分のみ移動量に加える
-                //_MoveDirection *= _Speed;                                       // キャラクターの設定スピードを乗算
+                // 坂道判定
+                Vector3 offsetPos = new Vector3(0.0f, 0.1f, 0.0f);
+                _Ray = new Ray(this.transform.position - offsetPos, this.transform.forward);
 
+                if (Physics.Raycast(_Ray.origin, _Ray.direction, out rayCastHit, _RayDistance))
+                {
+                    if (rayCastHit.collider.gameObject.tag != "Other")
+                    {
+                        _MoveDirection /= 2;
+                        //Debug.Log("hit");
+                    }
+                        
+                }
+                
                 // アニメーション（歩き）
                 if (Input.GetAxis("Horizontal") != 0.0f)
                     _Animator.SetBool("Speed", true);
@@ -412,7 +424,8 @@ public class PlayerController : MonoBehaviour
             }
             else
             {
-                _MoveDirection.x = (_H + _Rate / 2) / 2;                                          // キー入力でx成分のみ移動量に加える
+                //_MoveDirection.x = (_H + _Rate / 2) / 2;                                          // キー入力でx成分のみ移動量に加える
+                _MoveDirection.x = _H;
                 _MoveDirection.x *= _Speed;                                     // キャラクターの設定スピードを乗算
 
 
@@ -434,8 +447,6 @@ public class PlayerController : MonoBehaviour
             transform.position = _DefaultPos;       // 初期座標に移動
             SetState(CharactorState.STATE_NORMAL);  // 通常状態に移行
         }
-
-        
         
 
     }//Update
