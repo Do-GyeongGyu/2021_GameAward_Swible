@@ -3,16 +3,7 @@
 --- !u!78 &1
 TagManager:
   serializedVersion: 2
-  tags:
-  - MoveStage
-  - Goal
-  - Aerial
-  - Ice
-<<<<<<< HEAD
-  - Other
-=======
-  - Ground
->>>>>>> 35bbfd3793c39ad3763b436e1191648ca5f7b588
+  tags: []
   layers:
   - Default
   - TransparentFX

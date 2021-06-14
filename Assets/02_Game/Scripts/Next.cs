@@ -17,7 +17,7 @@ public class Next : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        if(Input.GetKeyDown(KeyCode.JoystickButton1))
+        if(Input.GetKeyDown(KeyCode.C) || Input.GetKeyDown(KeyCode.JoystickButton1))
         {
             SceneManager.LoadScene(NextSceanName);
         }
