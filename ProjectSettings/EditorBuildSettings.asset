@@ -6,15 +6,54 @@ EditorBuildSettings:
   serializedVersion: 2
   m_Scenes:
   - enabled: 1
-    path: Assets/Scenes/Player_Base.unity
-    guid: a7c46b1db8a91e644aff24553128634d
+    path: Assets/Scenes/Title.unity
+    guid: 67ca9dc5895ba4e4f9d009ecac7e11ef
   - enabled: 1
-    path: Assets/Scenes/S1-1_Inside.unity
-    guid: 07198e9272bbe334e909d22236333d8f
+    path: Assets/Scenes/Erea 1-1 tutorial.unity
+    guid: a3d9e34fd332eeb4ebdf6ad0857b74e2
   - enabled: 1
-    path: Assets/Scenes/S1-1_Outside.unity
-    guid: 2a3f41a4f5f36ab40a63c3bed0a51363
+    path: Assets/Scenes/Clear/Clear.unity
+    guid: 77d9f510d4cd2b5419c26aaf42eb52da
   - enabled: 1
-    path: Assets/Scenes/S1_1_Base.unity
-    guid: 272a9145ebd000a49a3942829cf1fdfb
+    path: Assets/Scenes/Erea 1-2.unity
+    guid: 37dfb8a5079709844945bef4b2dedc1c
+  - enabled: 1
+    path: Assets/Scenes/Clear/Clear1-2.unity
+    guid: 168228248e51f3b4881e2ea63b087ec4
+  - enabled: 1
+    path: Assets/Scenes/Erea 1-3.unity
+    guid: 007fc670c5561f5449de1ba0180f8b4b
+  - enabled: 1
+    path: Assets/Scenes/Clear/Clear1-3.unity
+    guid: 23130539c26a8594ba3ab4b38571f0e6
+  - enabled: 1
+    path: Assets/Scenes/Erea 1-4.unity
+    guid: 370b285706e97164aba0acab4cb81167
+  - enabled: 1
+    path: Assets/Scenes/Clear/Clear1-4.unity
+    guid: 2e7aecbbcd3246c4d98cd336b6edb537
+  - enabled: 1
+    path: Assets/Scenes/Erea 1-5.unity
+    guid: 93b556903d022be408e18fae1bc44cfb
+  - enabled: 1
+    path: Assets/Scenes/Clear/Clear1-5.unity
+    guid: b91cffc3fa4ccf041addd5e29fa2b284
+  - enabled: 1
+    path: Assets/Scenes/Erea 1-6.unity
+    guid: 820835f087936bf40824782c8dede390
+  - enabled: 1
+    path: Assets/Scenes/Clear/Clear1-6.unity
+    guid: b46c0611fd722564b8a7d415798e89e5
+  - enabled: 1
+    path: Assets/Scenes/Erea 1-7.unity
+    guid: 37317b782a9c84c44af964226103c791
+  - enabled: 1
+    path: Assets/Scenes/Clear/Clear1-7.unity
+    guid: af90ad2e3f597c941bf94ad1531af754
+  - enabled: 1
+    path: Assets/Scenes/Erea 1-8.unity
+    guid: 1a9f4af032df2b748bfd6de59e67eb93
+  - enabled: 1
+    path: Assets/Scenes/EndScene.unity
+    guid: c829a4f43572a004992015d7c3d8ebf1
   m_configObjects: {}

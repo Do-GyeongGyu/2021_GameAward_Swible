@@ -4,35 +4,20 @@ using UnityEngine;
 
 public class CameraSetting : MonoBehaviour
 {
-    private GameObject Main;
-    private GameObject Sub;
-    private bool SubCheck = false;
+    [SerializeField] private GameObject _Player;                                        // プレイヤーのオブジェクト情報格納用
+    [SerializeField] private Vector3 _OffsetPosition = new Vector3(0.0f, 0.0f, 0.0f);   // プレイヤーを中心としたオフセットポジション
 
     // Start is called before the first frame update
     void Start()
     {
-        Main = GameObject.Find("Main Camera");
-        Sub = GameObject.Find("Sub Camera");
-
-        Sub.SetActive(false);
+        // プレイヤーの情報を取得
+        _Player = GameObject.Find("Player");
     }
 
     // Update is called once per frame
     void Update()
     {
-        if (SubCheck == false && Input.GetKeyDown(KeyCode.Z))
-        {
-            //サブカメラをアクティブに設定
-            Main.SetActive(false);
-            Sub.SetActive(true);
-            SubCheck = true;
-        }
-        else if (SubCheck == true && Input.GetKeyDown(KeyCode.Z))
-        {
-            //メインカメラをアクティブに設定
-            Main.SetActive(true);
-            Sub.SetActive(false);
-            SubCheck = false;
-        }
+        // プレイヤーに追従
+        this.transform.position = _Player.transform.position + _OffsetPosition;
     }
 }

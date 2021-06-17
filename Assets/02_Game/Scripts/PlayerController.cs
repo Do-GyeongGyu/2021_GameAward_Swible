@@ -1,6 +1,10 @@
-﻿using System.Collections;
+﻿using System;
+using System.Collections;
 using System.Collections.Generic;
+//using System.Diagnostics;
+using System.Security.Cryptography;
 using UnityEngine;
+using static UnityEngine.Debug;
 
 public class PlayerController : MonoBehaviour
 {
@@ -18,18 +22,42 @@ public class PlayerController : MonoBehaviour
     };
 
     // パラメータ
-    public float _Speed         = 5.0f;                             // キャラクターの移動速度
-    public float _JumpSpeed     = 10.0f;                            // ジャンプ力
+    public float _Speed         = 0.0f;                             // キャラクターの移動速度
+    public float _MaxSpeed      = 5.0f;
+    public float _JumpPower     = 10.0f;                            // ジャンプ力
+    public float _Rate          = 0.0f;
     public float _Gravity       = 20.0f;                            // 重力の大きさ
     public Vector3 _DefaultPos  = new Vector3(0.0f, 0.0f, 0.0f);    // プレイヤーの初期位置
     public bool _IsFront        = true;                             // 表ステージかどうか
+    public AudioClip switchSE;                                       //スイッチSE用
+    public AudioClip JumpSE;                                        //ジャンプSE用
+    public AudioClip WarpSE;                                        //ワープSE用
 
-    private CharacterController _Controller;         // コンポーネントの取得
-    private Vector3 _MoveDirection = Vector3.zero;   // キャラクターの移動量
-    private float _H;                                // キー入力取得用
-    private CharactorState _CharactorState;          // キャラクターステート
-    private GameObject TMPAerial;
-    
+
+    private Ray _Ray;                                               // 当たり判定取得用のレイ
+    private GameObject _RayCastHitObject;                           // レイが当たったオブジェクトを取得するための変数
+    [SerializeField]private float _RayDistance = 0.0f;              // レイの長さ
+
+    private CharacterController _Controller;        // コンポーネントの取得
+    private Vector3 _MoveDirection = Vector3.zero;  // キャラクターの移動量
+    private float _H;                               // キー入力取得用
+    private CharactorState _CharactorState;         // キャラクターステート
+    private GameObject _WorldMgr;                   // WorldMgrの情報格納用
+    private GameObject _AerialMgr;                  // AerialMgrの情報格納用
+    private GameObject _AerialCollision;            // プレイヤーと触れている足場格納用
+    private GameObject _NearestAerial;              // プレイヤーに最も近い足場格納用
+    private GameObject _CurrentNearestAerial;       // 現在プレイヤーに最も近い足場格納用
+
+    private Animator _Animator;  // アニメーション遷移管理
+
+    [SerializeField] private bool _PlayerDirectionRight; // プレイヤーの向いてる方向が右
+    [SerializeField] private GameObject effectPrefab;//エフェクトを入れる所
+    [SerializeField] private GameObject effectPrefabState;//エフェクトを入れる所
+
+    AudioSource audioSource;
+
+    public Animator FadeMove;
+    public float FadeMovingTime = 1f;
 
     // メンバ関数
     //************************************************
@@ -54,8 +82,8 @@ public class PlayerController : MonoBehaviour
         }
         else if(s == CharactorState.STATE_WARP)// ワープ状態
         {
-            _Controller.enabled = false;     // CharactorController無効化
-            _MoveDirection = Vector3.zero;   // 移動量をゼロにする
+            _Controller.enabled = false;        // CharactorController無効化
+            _MoveDirection      = Vector3.zero; // 移動量をゼロにする
         }
     }
 
@@ -68,6 +96,66 @@ public class PlayerController : MonoBehaviour
         _IsFront = f;
     }
 
+    //************************************************
+    //  操作できる足場のアイコンを表示させる関数
+    //************************************************
+    public bool CheckNearestAerial()
+    {
+        if (_CurrentNearestAerial != _NearestAerial)// 現在の最も近い足場と取得した最も近い足場が異なる場合
+            return true;
+        else
+            return false;
+    }
+
+    //************************************************
+    //  Rayで取得したオブジェクトを返すGetter
+    //************************************************
+    public GameObject GetRayCastObject()
+    {
+        return _RayCastHitObject;
+    }
+
+    //************************************************
+    //  プレイヤーの向きを返すGetter
+    //************************************************
+    public bool GetPlayerDirection()
+    {
+        return _PlayerDirectionRight;
+    }
+
+
+    private void OnControllerColliderHit(ControllerColliderHit hit)
+    {
+        if(hit.gameObject.tag == "Aerial")
+        {
+            _AerialCollision = hit.gameObject;
+        }
+
+        if (hit.gameObject.tag == "MoveStage")
+        {
+            transform.parent = hit.gameObject.transform;
+        }
+        else
+        {
+            transform.parent = null;
+            _Speed = 5.0f;
+        }
+
+        if(hit.gameObject.tag == "Ice")
+        {
+            _MoveDirection = new Vector3((_H / 2 + _Rate) / 2, 0.0f, 0.0f);     // キー入力でx成分のみ移動量に加える
+            _MoveDirection *= _Speed;                                       // キャラクターの設定スピードを乗算
+        }
+        else
+        {
+            _MoveDirection = new Vector3(_H, 0.0f, 0.0f);                   // キー入力でx成分のみ移動量に加える
+            _MoveDirection *= _Speed;                                       // キャラクターの設定スピードを乗算
+            _Rate = 0;
+        }
+    }
+
+
+
     // Start is called before the first frame update
     void Start()
     {
@@ -77,101 +165,288 @@ public class PlayerController : MonoBehaviour
         // CharactorStateの初期化
         _CharactorState = CharactorState.STATE_NORMAL;   // 初期値を表に設定
 
-        TMPAerial = GameObject.Find("Aerial");
+        // WorldMgrの取得
+        _WorldMgr = GameObject.Find("WorldMgr");
+
+        // WorldMgrの取得
+        _AerialMgr = GameObject.Find("AerialMgr");
+
+        // _AerialCollisionの初期化
+        _AerialCollision = null;
+
+        // _NearestAerialの初期化
+        _NearestAerial = null;
+
+        // _CurrentNearestAerialの初期化
+        _CurrentNearestAerial = null;
+
+        // _Animatorを取得
+        _Animator = GetComponent<Animator>();
+
+        // プレイヤーの向き初期化
+        _PlayerDirectionRight = true;
+
+        if(LoadManager.IsFirst == false)
+        {
+            Debug.Log("来たんゴ");
+            //プレイヤー位置ロード
+            transform.position = LoadManager.playerpos;
+            LoadManager.IsFirst = true;
+        }
+
+        //オーディオ取得
+        audioSource = GetComponent<AudioSource>();
+
+    }//Start
+
+    IEnumerator WorldFade()
+    {
+        //キャラコン一時停止
+
+        //アニメーション再生
+        FadeMove.SetTrigger("Start");
+
+       
+
+        //待機
+        yield return new WaitForSeconds(FadeMovingTime);
+
+        if (_WorldMgr.GetComponent<WorldMgr>().GetWorldState() == WorldMgr.WorldState.STATE_FRONT)
+        {
+            _WorldMgr.GetComponent<WorldMgr>().SetWorldState(WorldMgr.WorldState.STATE_BACK);
+        }
+        else
+        {
+            _WorldMgr.GetComponent<WorldMgr>().SetWorldState(WorldMgr.WorldState.STATE_FRONT);
+        }
+    }
+
+    public void MoveWorld()
+    {
+        StartCoroutine(WorldFade());
     }
 
     // Update is called once per frame
     void Update()
     {
-        //CurrentPos = this.transform.position;
-        //PosChange = new Vector3(CurrentPos.x, CurrentPos.y, 0.0f);
-        
-        if(_CharactorState == CharactorState.STATE_NORMAL)// 通常状態
+        if (_CharactorState == CharactorState.STATE_NORMAL)// 通常状態
         {
             // キー入力取得
             _H = Input.GetAxis("Horizontal");    // 値の範囲(-1.0f~1.0f)
+                                                 //if (Input.GetKey(KeyCode.A))
+                                                 //{
+                                                 //    _Speed -= _Rate * Time.deltaTime;
+                                                 //    if (Mathf.Abs(_Speed) > _MaxSpeed)
+                                                 //        _Speed = -_MaxSpeed;
+                                                 //}
+                                                 //else if (Input.GetKey(KeyCode.D))
+                                                 //{
+                                                 //    _Speed += (_MaxSpeed / _Rate) * Time.deltaTime;
+                                                 //    if (_Speed > _MaxSpeed)
+                                                 //        _Speed = _MaxSpeed;
+                                                 //}
+
+            if(_H < 0)
+            {
+                _Rate -= 0.1f;
+
+                if (_Rate < -2.0f)
+                    _Rate = -2.0f;
+            }
+            else if(_H > 0)
+            {
+                _Rate += 0.1f;
+
+                if (_Rate > 2.0f)
+                    _Rate = 2.0f;
+            }
+            else
+            {
+                if(_Rate < 0)
+                {
+                    _Rate += 0.005f;
+
+                    if (_Rate > -0.01f)
+                        _Rate = 0;
+                }
+                else if(_Rate > 0)
+                {
+                    _Rate -= 0.005f;
+
+                    if (_Rate < 0.01f)
+                        _Rate = 0;
+                }
+                else
+                {
+                    _Rate = 0;
+                }
+            }
+
+            //Debug.Log(_Rate);
+
+
+
+            // Rayの更新
+            _Ray = new Ray(this.transform.position, -this.transform.up);
+            RaycastHit rayCastHit;
+
+            if (Physics.Raycast(_Ray.origin, _Ray.direction, out rayCastHit, _RayDistance))
+            {
+                if (rayCastHit.collider.gameObject.tag == "Aerial")
+                    _RayCastHitObject = rayCastHit.collider.gameObject;
+            }
+            else
+            {
+                _RayCastHitObject = null;
+            }
+
+            // プレイヤーに最も近い足場のオブジェクトを取得
+            _NearestAerial = _AerialMgr.GetComponent<AerialMgr>().GetNearestAerial();
+
+            // 最も近い足場が変わったかチェック
+            if (CheckNearestAerial())
+            {
+                if (_NearestAerial != null)// 取得した最も近い足場がnullではない場合
+                {
+                    if (_CurrentNearestAerial != null)// 現在の最も近い足場nullではない場合
+                    {
+                        _CurrentNearestAerial.GetComponent<AerialController>().ChangeButtonIconEnabled();   // 現在の足場のアイコンを切り替える（非表示）
+                        _NearestAerial.GetComponent<AerialController>().ChangeButtonIconEnabled();          // 取得した足場のアイコンを切り替える（表示）
+
+                        _CurrentNearestAerial = _NearestAerial; // 取得した足場を現在の足場に代入
+                    }
+                    else
+                    {
+                        _NearestAerial.GetComponent<AerialController>().ChangeButtonIconEnabled();  // 取得した足場のアイコンを切り替える（表示）
+
+                        _CurrentNearestAerial = _NearestAerial; // 取得した足場を現在の足場に代入
+                    }
+                }
+                else
+                {
+                    _CurrentNearestAerial.GetComponent<AerialController>().ChangeButtonIconEnabled();   // 現在の足場のアイコンを切り替える（非表示）
+
+                    _CurrentNearestAerial = _NearestAerial; // 取得した足場を現在の足場に代入
+                }
+            }
+
+            // プレイヤーの向き変更
+            if(_PlayerDirectionRight)
+            {
+                if(_H < 0.0f)
+                {
+                    this.transform.rotation = Quaternion.Euler(0.0f, -90.0f, 0.0f);
+                    _PlayerDirectionRight = false;
+                }
+            }
+            else
+            {
+                if (_H > 0.0f)
+                {
+                    this.transform.rotation = Quaternion.Euler(0.0f, 90.0f, 0.0f);
+                    _PlayerDirectionRight = true;
+                }
+            }
+
 
             // キャラクターの移動
             if (_Controller.isGrounded)// キャラクターが地面についているとき
             {
-                _MoveDirection = new Vector3(_H, 0.0f, 0.0f);                   // キー入力でx成分のみ移動量に加える
-                _MoveDirection = transform.TransformDirection(_MoveDirection);  // キャラクターの移動に慣性をかける
-                _MoveDirection *= _Speed;                                       // キャラクターの設定スピードを乗算
+                // 坂道判定
+                Vector3 offsetPos = new Vector3(0.0f, 0.1f, 0.0f);
+                _Ray = new Ray(this.transform.position - offsetPos, this.transform.forward);
+
+                if (Physics.Raycast(_Ray.origin, _Ray.direction, out rayCastHit, _RayDistance))
+                {
+                    if (rayCastHit.collider.gameObject.tag != "Other")
+                    {
+                        _MoveDirection /= 2;
+                        //Debug.Log("hit");
+                    }
+                        
+                }
+                
+                // アニメーション（歩き）
+                if (Input.GetAxis("Horizontal") != 0.0f)
+                    _Animator.SetBool("Speed", true);
+                else
+                    _Animator.SetBool("Speed", false);
+
+                // アニメーション（着地）
+                _Animator.SetBool("Jump", false);
 
                 // ジャンプ
-                if (Input.GetKeyDown(KeyCode.Space))// SPACEキーが押されたとき
+                if (Input.GetKeyDown(KeyCode.Space) || Input.GetKeyDown(KeyCode.JoystickButton0))// SPACEキーが押されたとき
                 {
-                    _MoveDirection.y = _JumpSpeed;  // y成分にキャラクターのジャンプ力を加算
+                    _MoveDirection.y = _JumpPower;  // y成分にキャラクターのジャンプ力を加算
+
+                    // アニメーション（ジャンプ、滞空）
+                    _Animator.SetBool("Jump", true);
+
+                    audioSource.PlayOneShot(JumpSE);
+
                 }
 
                 // 表と裏の変更
-                if (Input.GetKeyDown(KeyCode.Z))
+                if (Input.GetKeyDown(KeyCode.Z) || Input.GetKeyDown(KeyCode.JoystickButton5))
                 {
-                    if (GameObject.Find("WorldMgr").GetComponent<WorldMgr>().GetWorldState() == WorldMgr.WorldState.STATE_FRONT)
-                    {
-                        GameObject.Find("WorldMgr").GetComponent<WorldMgr>().SetWorldState(WorldMgr.WorldState.STATE_BACK);
-                    }
-                    else
-                    {
-                        GameObject.Find("WorldMgr").GetComponent<WorldMgr>().SetWorldState(WorldMgr.WorldState.STATE_FRONT);
-                    }
+                    MoveWorld();
+                    GameObject effect = Instantiate(effectPrefab, transform.position+ new Vector3(0.0f, 1.0f, 0.0f), Quaternion.identity);
+                    Destroy(effect, 2.0f);
+
+                    audioSource.PlayOneShot(WarpSE);
+
+
+                    //if (_WorldMgr.GetComponent<WorldMgr>().GetWorldState() == WorldMgr.WorldState.STATE_FRONT)
+                    //{
+                    //    _WorldMgr.GetComponent<WorldMgr>().SetWorldState(WorldMgr.WorldState.STATE_BACK);
+                    //}
+                    //else
+                    //{
+                    //    _WorldMgr.GetComponent<WorldMgr>().SetWorldState(WorldMgr.WorldState.STATE_FRONT);
+                    //}
                 }
 
-                // 足場の変更（簡易実装）
-                if(Input.GetKeyDown(KeyCode.C))
+                // 足場の変更
+                if (Input.GetKeyDown(KeyCode.C) || Input.GetKeyDown(KeyCode.JoystickButton1))
                 {
-                    if (GameObject.Find("WorldMgr").GetComponent<WorldMgr>().GetWorldState() == WorldMgr.WorldState.STATE_FRONT)
+                    // 取得したオブジェクトのステート（表裏）を切り替える
+                    if (_NearestAerial != null)
                     {
-                        if(GameObject.Find("AerialMgr").GetComponent<TMPAerialController>().GetAerialState() == TMPAerialController.AerialState.STATE_FRONT)
-                        {
-                            GameObject.Find("AerialMgr").GetComponent<TMPAerialController>().SetAerialState(TMPAerialController.AerialState.STATE_BACK);
-                        }
+                        _NearestAerial.GetComponent<AerialController>().ChangeState();
+                        GameObject effect = Instantiate(effectPrefabState, _NearestAerial.transform.position + new Vector3(2.5f, 1.0f, -1.0f), Quaternion.identity);
+                        Destroy(effect, 2.0f);
+
+                        audioSource.PlayOneShot(switchSE);
                     }
-                    else
-                    {
-                        if(GameObject.Find("AerialMgr").GetComponent<TMPAerialController>().GetAerialState() == TMPAerialController.AerialState.STATE_BACK)
-                        {
-                            GameObject.Find("AerialMgr").GetComponent<TMPAerialController>().SetAerialState(TMPAerialController.AerialState.STATE_FRONT);
-                        }
-                    }
+
                 }
-
-                //if(SubCheck == false && (CurrentPos.z == -1.0f) && Input.GetKey(KeyCode.Z))
-                //{
-                //    PosChange.z = 1.5f;
-                //    SubCheck = true;
-                //    //Controller.transform = PosChange;
-
-                //    // PosChange.z = 1.5f;
-                //    //CurrentPos.position = PosChange;
-                //}
-                //else if(SubCheck == true && (CurrentPos.z == 1.5f) && Input.GetKey(KeyCode.Z))
-                //{
-                //    PosChange.z = -1.0f;
-                //    Controller.Move(PosChange);
-                //    SubCheck = false;
-                //    // PosChange.z = -1.0f;
-                //    // CurrentPos.position = PosChange;
-                //}
             }
+            else
+            {
+                //_MoveDirection.x = (_H + _Rate / 2) / 2;                                          // キー入力でx成分のみ移動量に加える
+                _MoveDirection.x = _H;
+                _MoveDirection.x *= _Speed;                                     // キャラクターの設定スピードを乗算
 
+
+                
+                // _AerialCollisionを空にする
+                _AerialCollision = null;
+
+                //Debug.Log("a");
+
+                //else if (!_Controller.isGrounded)
+            }
+            
             // 重力設定
             _MoveDirection.y -= _Gravity * Time.deltaTime;
             _Controller.Move(_MoveDirection * Time.deltaTime);
-
-            // 落下判定
-            //if(transform.position.y < _MinLevel)// 落下判定高度より下の時
-            //{
-            //    SetState(CharactorState.STATE_WARP);  // キャラクターのステートをワープ状態にセット
-            //}
         }
         else if(_CharactorState == CharactorState.STATE_WARP)    // ワープ状態
         {
             transform.position = _DefaultPos;       // 初期座標に移動
             SetState(CharactorState.STATE_NORMAL);  // 通常状態に移行
         }
-
-        
         
 
     }//Update
