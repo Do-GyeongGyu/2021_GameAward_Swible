@@ -138,7 +138,7 @@ public class PlayerController : MonoBehaviour
         else
         {
             transform.parent = null;
-            _Speed = 5.0f;
+            //_Speed = 5.0f;
         }
 
         if(hit.gameObject.tag == "Ice")

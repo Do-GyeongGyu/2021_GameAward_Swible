@@ -780,11 +780,11 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: a3695e99da772c2469aafd4f363036a2, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  _Speed: 5
+  _Speed: 8
   _MaxSpeed: 5
-  _JumpPower: 10
+  _JumpPower: 30
   _Rate: 0.1
-  _Gravity: 20
+  _Gravity: 80
   _DefaultPos: {x: 1, y: 2, z: -1}
   _IsFront: 1
   switchSE: {fileID: 8300000, guid: 924bef1135de56440a13ae5ac33b90c1, type: 3}
