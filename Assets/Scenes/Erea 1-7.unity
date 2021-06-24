@@ -3985,7 +3985,7 @@ PrefabInstance:
     - target: {fileID: 5033327804044914214, guid: 06b36ca9676503b47998dad1613c274d,
         type: 3}
       propertyPath: NextSceanName
-      value: Erea 1-6
+      value: Erea 1-8
       objectReference: {fileID: 0}
     - target: {fileID: 8218935569281295808, guid: 06b36ca9676503b47998dad1613c274d,
         type: 3}
