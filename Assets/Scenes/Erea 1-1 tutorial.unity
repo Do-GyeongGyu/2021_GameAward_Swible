@@ -139,7 +139,7 @@ Mesh:
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
-  m_Name: pb_Mesh-20266
+  m_Name: pb_Mesh-9608
   serializedVersion: 10
   m_SubMeshes:
   - serializedVersion: 2
@@ -388,7 +388,7 @@ Mesh:
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
-  m_Name: pb_Mesh21664
+  m_Name: pb_Mesh17682
   serializedVersion: 10
   m_SubMeshes:
   - serializedVersion: 2
@@ -577,7 +577,7 @@ Mesh:
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
-  m_Name: pb_Mesh-20324
+  m_Name: pb_Mesh-9666
   serializedVersion: 10
   m_SubMeshes:
   - serializedVersion: 2
@@ -867,6 +867,7 @@ Transform:
   - {fileID: 1837372879}
   - {fileID: 911438947}
   - {fileID: 108800241}
+  - {fileID: 2107914999}
   m_Father: {fileID: 88875262}
   m_RootOrder: 1
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
@@ -889,7 +890,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!64 &742098645
 MeshCollider:
   m_ObjectHideFlags: 0
@@ -1227,6 +1228,75 @@ CapsuleCollider:
   m_Height: 0.21
   m_Direction: 1
   m_Center: {x: 0, y: 0.1, z: 0}
+--- !u!1001 &873463152
+PrefabInstance:
+  m_ObjectHideFlags: 0
+  serializedVersion: 2
+  m_Modification:
+    m_TransformParent: {fileID: 637872289}
+    m_Modifications:
+    - target: {fileID: 6779010797776301296, guid: 3a50b68679580f04681925ce586d6ef9,
+        type: 3}
+      propertyPath: m_RootOrder
+      value: 7
+      objectReference: {fileID: 0}
+    - target: {fileID: 6779010797776301296, guid: 3a50b68679580f04681925ce586d6ef9,
+        type: 3}
+      propertyPath: m_LocalPosition.x
+      value: 9.81
+      objectReference: {fileID: 0}
+    - target: {fileID: 6779010797776301296, guid: 3a50b68679580f04681925ce586d6ef9,
+        type: 3}
+      propertyPath: m_LocalPosition.y
+      value: -2.35
+      objectReference: {fileID: 0}
+    - target: {fileID: 6779010797776301296, guid: 3a50b68679580f04681925ce586d6ef9,
+        type: 3}
+      propertyPath: m_LocalPosition.z
+      value: -12
+      objectReference: {fileID: 0}
+    - target: {fileID: 6779010797776301296, guid: 3a50b68679580f04681925ce586d6ef9,
+        type: 3}
+      propertyPath: m_LocalRotation.w
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 6779010797776301296, guid: 3a50b68679580f04681925ce586d6ef9,
+        type: 3}
+      propertyPath: m_LocalRotation.x
+      value: -0
+      objectReference: {fileID: 0}
+    - target: {fileID: 6779010797776301296, guid: 3a50b68679580f04681925ce586d6ef9,
+        type: 3}
+      propertyPath: m_LocalRotation.y
+      value: -0
+      objectReference: {fileID: 0}
+    - target: {fileID: 6779010797776301296, guid: 3a50b68679580f04681925ce586d6ef9,
+        type: 3}
+      propertyPath: m_LocalRotation.z
+      value: -0
+      objectReference: {fileID: 0}
+    - target: {fileID: 6779010797776301296, guid: 3a50b68679580f04681925ce586d6ef9,
+        type: 3}
+      propertyPath: m_LocalEulerAnglesHint.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 6779010797776301296, guid: 3a50b68679580f04681925ce586d6ef9,
+        type: 3}
+      propertyPath: m_LocalEulerAnglesHint.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 6779010797776301296, guid: 3a50b68679580f04681925ce586d6ef9,
+        type: 3}
+      propertyPath: m_LocalEulerAnglesHint.z
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 6779010797776301297, guid: 3a50b68679580f04681925ce586d6ef9,
+        type: 3}
+      propertyPath: m_Name
+      value: pCube 3chain
+      objectReference: {fileID: 0}
+    m_RemovedComponents: []
+  m_SourcePrefab: {fileID: 100100000, guid: 3a50b68679580f04681925ce586d6ef9, type: 3}
 --- !u!4 &911438947 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: 4917145650825357869, guid: b1693355267c4054da0ca47cd5103ad3,
@@ -2798,7 +2868,6 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   _HoldButton: 1
-  _IsPress: 0
   _InteractiveObject: {fileID: 0}
 --- !u!95 &1969627227 stripped
 Animator:
@@ -2818,7 +2887,7 @@ Mesh:
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
-  m_Name: pb_Mesh21732
+  m_Name: pb_Mesh17738
   serializedVersion: 10
   m_SubMeshes:
   - serializedVersion: 2
@@ -2985,6 +3054,12 @@ Mesh:
     offset: 0
     size: 0
     path: 
+--- !u!4 &2107914999 stripped
+Transform:
+  m_CorrespondingSourceObject: {fileID: 6779010797776301296, guid: 3a50b68679580f04681925ce586d6ef9,
+    type: 3}
+  m_PrefabInstance: {fileID: 873463152}
+  m_PrefabAsset: {fileID: 0}
 --- !u!1001 &275794617139062275
 PrefabInstance:
   m_ObjectHideFlags: 0
