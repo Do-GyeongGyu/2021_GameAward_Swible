@@ -19,10 +19,10 @@ public class SwitchController : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        
+        _InteractiveObject.GetComponent<DoorController>().Interact(_IsPress);
 
         RaycastHit hit;
-        if (Physics.BoxCast(transform.position + new Vector3(0.0f, 0.1f, 0.0f), Vector3.one * 1.0f, transform.up, out hit, transform.rotation, 0.5f))
+        if (Physics.BoxCast(transform.position + new Vector3(0.0f, -1.0f, 0.0f), Vector3.one * 1.0f, transform.up, out hit, transform.rotation, 0.5f))
         {
             if(hit.transform.tag == "Player")
             {
@@ -49,12 +49,5 @@ public class SwitchController : MonoBehaviour
 
         Debug.Log(_IsPress);
 
-    }
-
-    private void OnDrawGizmos()
-    {
-        Gizmos.color = Color.red;
-        Gizmos.DrawRay(transform.position, transform.up * 10.0f);
-        Gizmos.DrawWireCube(transform.position, Vector3.one);
     }
 }
