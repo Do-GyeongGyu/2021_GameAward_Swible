@@ -56,6 +56,7 @@ public class AerialController : MonoBehaviour
         _WorldMgr = GameObject.Find("WorldMgr");                                // WorldMgrを探して保持
         _ButtonIcon = gameObject.transform.Find("ButtonIcon").gameObject;  // ButtonIconを取得
         _ButtonIcon.SetActive(false);                                           // 初期状態は非表示にしておく
+        GetComponent<Outline>().enabled = false;
     }
 
     // Update is called once per frame
@@ -63,9 +64,18 @@ public class AerialController : MonoBehaviour
     {
         // ButtonIconの表示切り替え
         if (_ButtonIconEnabled)
+        {
             _ButtonIcon.SetActive(true);
+            GetComponent<Outline>().enabled = true;
+        }
         else
-          if (_ButtonIcon != null)    
-            _ButtonIcon.SetActive(false);
+        {
+            if (_ButtonIcon != null)
+            {
+                _ButtonIcon.SetActive(false);
+                GetComponent<Outline>().enabled = false;
+            }
+        }
+         
     }
 }
