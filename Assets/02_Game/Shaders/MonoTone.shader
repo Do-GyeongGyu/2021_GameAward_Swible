@@ -1,12 +1,17 @@
-﻿Shader "Custom/MonoTone" {
+﻿Shader "Custom/MonoTone"
+{
+
 	Properties{
-		_Darkness("Dark", Range(0, 0.1)) = 0.04
+		_Darkness("Dark", Range(0, 0.2)) = 0.04
 		_Strength("Strength", Range(0.05, 0.15)) = 0.05
 		_MainTex("MainTex", 2D) = ""{}
 	}
 
-		SubShader{
-			Pass {
+		SubShader
+	{
+			
+			Pass 
+			{
 				CGPROGRAM
 
 				#include "UnityCG.cginc"
@@ -18,7 +23,8 @@
 				half _Darkness;
 				half _Strength;
 
-				fixed4 frag(v2f_img i) : COLOR{
+				fixed4 frag(v2f_img i) : COLOR
+				{
 					fixed4 c = tex2D(_MainTex, i.uv);
 					half gray = c.r * 0.3 + c.g * 0.6 + c.b * 0.1 - _Darkness;
 					gray = (gray < 0) ? 0 : gray;
