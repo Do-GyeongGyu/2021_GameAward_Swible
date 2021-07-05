@@ -123,6 +123,13 @@ public class PlayerController : MonoBehaviour
         return _PlayerDirectionRight;
     }
 
+    //************************************************
+    //  プレイヤーのsステートを返すGetter
+    //************************************************
+    public CharactorState GetPlayerState()
+    {
+        return _CharactorState;
+    }
 
     private void OnControllerColliderHit(ControllerColliderHit hit)
     {

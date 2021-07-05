@@ -55,9 +55,9 @@ public class FadeImage : UnityEngine.UI.Graphic , IFade
 		enabled = true;
 		material.SetFloat ("_Range", 1 - range);
 
-		if (range <= 0) {
-			this.enabled = false;
-		}
+		//if (range <= 0) {
+		//	this.enabled = false;
+		//}
 	}
 
 	public void UpdateMaskTexture (Texture texture)
@@ -66,12 +66,19 @@ public class FadeImage : UnityEngine.UI.Graphic , IFade
 		material.SetColor ("_Color", color);
 	}
 
-	#if UNITY_EDITOR
-	protected override void OnValidate ()
-	{
-		base.OnValidate ();
-		UpdateMaskCutout (Range);
-		UpdateMaskTexture (maskTexture);
+	void Update()
+    {
+		UpdateMaskCutout(cutoutRange);
+		UpdateMaskTexture(maskTexture);
 	}
-	#endif
+
+	//#if UNITY_EDITOR
+	//protected override void OnValidate ()
+	//{
+	//	base.OnValidate ();
+	//	//UpdateMaskCutout (Range);
+	//	UpdateMaskCutout(cutoutRange);
+	//	UpdateMaskTexture (maskTexture);
+	//}
+	//#endif
 }
