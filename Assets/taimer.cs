@@ -21,5 +21,11 @@ public class taimer : MonoBehaviour
             Gage.fillAmount -= 1.0f / countTime * Time.deltaTime;
        // }
 
+        //if(countTime>0)
+        //{
+        //    GameObject.Find("WorldMgr").GetComponent<WorldMgr>().SetWorldState(WorldMgr.WorldState.STATE_FRONT);    // 表ステージに変更
+        //    col.GetComponent<PlayerController>().SetState(PlayerController.CharactorState.STATE_WARP);              // プレイヤーをワープ状態にする
+        //}
+
     }
 }

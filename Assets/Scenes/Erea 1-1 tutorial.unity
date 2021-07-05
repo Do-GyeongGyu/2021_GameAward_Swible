@@ -2920,6 +2920,36 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 0}
     m_Modifications:
+    - target: {fileID: 2027085081944005722, guid: 120e446482a8dd740a62e7dba7882519,
+        type: 3}
+      propertyPath: m_Color.b
+      value: 0.3584906
+      objectReference: {fileID: 0}
+    - target: {fileID: 2027085081944005722, guid: 120e446482a8dd740a62e7dba7882519,
+        type: 3}
+      propertyPath: m_Color.g
+      value: 0.3584906
+      objectReference: {fileID: 0}
+    - target: {fileID: 2027085081944005722, guid: 120e446482a8dd740a62e7dba7882519,
+        type: 3}
+      propertyPath: m_Color.r
+      value: 0.3584906
+      objectReference: {fileID: 0}
+    - target: {fileID: 2027085081944005722, guid: 120e446482a8dd740a62e7dba7882519,
+        type: 3}
+      propertyPath: maskTexture
+      value: 
+      objectReference: {fileID: 2800000, guid: 8a0828f1ddda133409ab551879381e0e, type: 3}
+    - target: {fileID: 2027085081944005722, guid: 120e446482a8dd740a62e7dba7882519,
+        type: 3}
+      propertyPath: m_RaycastTarget
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 2027085081951958136, guid: 120e446482a8dd740a62e7dba7882519,
+        type: 3}
+      propertyPath: m_LocalPosition.z
+      value: 0
+      objectReference: {fileID: 0}
     - target: {fileID: 6997877117624904021, guid: 120e446482a8dd740a62e7dba7882519,
         type: 3}
       propertyPath: _Back
