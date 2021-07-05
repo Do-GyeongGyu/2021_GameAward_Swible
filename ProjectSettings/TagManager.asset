@@ -3,7 +3,13 @@
 --- !u!78 &1
 TagManager:
   serializedVersion: 2
-  tags: []
+  tags:
+  - Goal
+  - Aerial
+  - ClearText
+  - Ground
+  - Ice
+  - Death
   layers:
   - Default
   - TransparentFX

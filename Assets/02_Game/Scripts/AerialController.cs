@@ -16,6 +16,8 @@ public class AerialController : MonoBehaviour
     private GameObject _WorldMgr;                                                   // WorldMgrのオブジェクト情報を持っておく
     private GameObject _ButtonIcon;                                                 // ButtonIcon操作用変数
     private bool _ButtonIconEnabled = false;                                        // ButtonIconが表示されているか
+    //[SerializeField] private GameObject effectPrefab;//エフェクトを入れる所
+
 
     // メンバ関数
     //************************************************
@@ -57,6 +59,9 @@ public class AerialController : MonoBehaviour
         _ButtonIcon = gameObject.transform.Find("ButtonIcon").gameObject;  // ButtonIconを取得
         _ButtonIcon.SetActive(false);                                           // 初期状態は非表示にしておく
         GetComponent<Outline>().enabled = false;
+ //       GameObject effect = Instantiate(effectPrefab, transform.position + new Vector3(0.0f, 1.0f, 0.0f), Quaternion.identity);
+
+
     }
 
     // Update is called once per frame

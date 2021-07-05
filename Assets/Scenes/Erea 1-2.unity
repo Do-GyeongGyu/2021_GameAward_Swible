@@ -443,6 +443,12 @@ Transform:
   m_Father: {fileID: 0}
   m_RootOrder: 5
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!95 &147666932 stripped
+Animator:
+  m_CorrespondingSourceObject: {fileID: 2289952733278613348, guid: 120e446482a8dd740a62e7dba7882519,
+    type: 3}
+  m_PrefabInstance: {fileID: 1753682545}
+  m_PrefabAsset: {fileID: 0}
 --- !u!224 &163688208 stripped
 RectTransform:
   m_CorrespondingSourceObject: {fileID: 1930826196652287407, guid: 106bbf62612bc394aa0605d644bf4f0c,
@@ -3688,6 +3694,11 @@ PrefabInstance:
       propertyPath: _AerialState
       value: 1
       objectReference: {fileID: 0}
+    - target: {fileID: 8742058908021255936, guid: d77a5884c8d8cdb46845c3e16b160e28,
+        type: 3}
+      propertyPath: outlineWidth
+      value: 10
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: d77a5884c8d8cdb46845c3e16b160e28, type: 3}
 --- !u!1 &1604584138
@@ -3834,6 +3845,11 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 0}
     m_Modifications:
+    - target: {fileID: 2027085081951958136, guid: 120e446482a8dd740a62e7dba7882519,
+        type: 3}
+      propertyPath: m_LocalPosition.z
+      value: 0
+      objectReference: {fileID: 0}
     - target: {fileID: 2625623297500657194, guid: 120e446482a8dd740a62e7dba7882519,
         type: 3}
       propertyPath: m_Name
@@ -3914,6 +3930,11 @@ PrefabInstance:
       propertyPath: m_LocalPosition.z
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 6252024177182818165, guid: 120e446482a8dd740a62e7dba7882519,
+        type: 3}
+      propertyPath: m_LocalPosition.z
+      value: 0
+      objectReference: {fileID: 0}
     - target: {fileID: 6997877117828253289, guid: 120e446482a8dd740a62e7dba7882519,
         type: 3}
       propertyPath: m_Sprite
@@ -3930,6 +3951,11 @@ PrefabInstance:
       propertyPath: WarpSE
       value: 
       objectReference: {fileID: 8300000, guid: c3ba0aaf433db2b4ea36ef1975481aa9, type: 3}
+    - target: {fileID: 6997877118981328624, guid: 120e446482a8dd740a62e7dba7882519,
+        type: 3}
+      propertyPath: FadeMove
+      value: 
+      objectReference: {fileID: 147666932}
     - target: {fileID: 6997877118981328624, guid: 120e446482a8dd740a62e7dba7882519,
         type: 3}
       propertyPath: switchSE
