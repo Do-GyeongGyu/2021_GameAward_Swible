@@ -60,7 +60,7 @@ public class AerialController : MonoBehaviour
         _ButtonIcon.SetActive(false);                                           // 初期状態は非表示にしておく
         GetComponent<Outline>().enabled = false;
  //       GameObject effect = Instantiate(effectPrefab, transform.position + new Vector3(0.0f, 1.0f, 0.0f), Quaternion.identity);
-
+ 
 
     }
 
