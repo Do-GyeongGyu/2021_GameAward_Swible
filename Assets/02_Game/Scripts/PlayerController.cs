@@ -50,6 +50,8 @@ public class PlayerController : MonoBehaviour
 
     private Animator _Animator;  // アニメーション遷移管理
 
+    private GameObject _Timer;  // タイマー
+
     [SerializeField] private bool _PlayerDirectionRight; // プレイヤーの向いてる方向が右
     [SerializeField] private GameObject effectPrefab;//エフェクトを入れる所
     [SerializeField] private GameObject effectPrefabState;//エフェクトを入れる所
@@ -204,6 +206,9 @@ public class PlayerController : MonoBehaviour
         //オーディオ取得
         audioSource = GetComponent<AudioSource>();
 
+        // タイマー取得
+        _Timer = GameObject.Find("Timer/Gage");
+
     }//Start
 
     IEnumerator WorldFade()
@@ -300,7 +305,7 @@ public class PlayerController : MonoBehaviour
             if (Physics.Raycast(_Ray.origin, _Ray.direction, out rayCastHit, _RayDistance))
             {
                 if (rayCastHit.collider.gameObject.tag == "Aerial")
-                    _RayCastHitObject = rayCastHit.collider.gameObject;
+                    _RayCastHitObject = rayCastHit.collider.transform.parent.gameObject;
             }
             else
             {
@@ -451,6 +456,8 @@ public class PlayerController : MonoBehaviour
         }
         else if(_CharactorState == CharactorState.STATE_WARP)    // ワープ状態
         {
+            Debug.Log("ochi");
+            _Timer.GetComponent<taimer>().Gage.fillAmount = 1;
             transform.position = _DefaultPos;       // 初期座標に移動
             SetState(CharactorState.STATE_NORMAL);  // 通常状態に移行
         }
