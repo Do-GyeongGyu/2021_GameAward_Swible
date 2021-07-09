@@ -11,7 +11,7 @@ GameObject:
   - component: {fileID: 584991348976580080}
   - component: {fileID: 6500898542340504306}
   - component: {fileID: 240272035993661261}
-  m_Layer: 0
+  m_Layer: 8
   m_Name: Aerial
   m_TagString: Aerial
   m_Icon: {fileID: 0}
@@ -76,7 +76,7 @@ GameObject:
   - component: {fileID: 5181634102124502923}
   - component: {fileID: 5181634102124502925}
   - component: {fileID: 5181634102124502922}
-  m_Layer: 5
+  m_Layer: 8
   m_Name: Image
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -151,7 +151,7 @@ GameObject:
   - component: {fileID: 5181634103099487308}
   - component: {fileID: 5181634103099487309}
   - component: {fileID: 5181634103099487306}
-  m_Layer: 5
+  m_Layer: 8
   m_Name: ButtonIcon
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -250,7 +250,7 @@ GameObject:
   - component: {fileID: 7734179387691738251}
   - component: {fileID: 3202865492965477563}
   - component: {fileID: 6122651419809455158}
-  m_Layer: 0
+  m_Layer: 8
   m_Name: pCube15
   m_TagString: Aerial
   m_Icon: {fileID: 0}
