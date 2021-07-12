@@ -456,7 +456,6 @@ public class PlayerController : MonoBehaviour
         }
         else if(_CharactorState == CharactorState.STATE_WARP)    // ワープ状態
         {
-            Debug.Log("ochi");
             _Timer.GetComponent<taimer>().Gage.fillAmount = 1;
             transform.position = _DefaultPos;       // 初期座標に移動
             SetState(CharactorState.STATE_NORMAL);  // 通常状態に移行
