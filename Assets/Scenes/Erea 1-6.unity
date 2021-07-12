@@ -1395,7 +1395,7 @@ Mesh:
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
-  m_Name: pb_Mesh31352
+  m_Name: pb_Mesh25810
   serializedVersion: 10
   m_SubMeshes:
   - serializedVersion: 2
@@ -1847,6 +1847,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   transparenttypeobj: 0
   transparentTime: 2
+  _WaitSeconds: 0.6
 --- !u!64 &714370444
 MeshCollider:
   m_ObjectHideFlags: 0
