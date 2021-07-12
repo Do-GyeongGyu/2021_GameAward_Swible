@@ -446,7 +446,7 @@ Mesh:
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
-  m_Name: pb_Mesh-33476
+  m_Name: pb_Mesh-110152
   serializedVersion: 10
   m_SubMeshes:
   - serializedVersion: 2
@@ -1798,6 +1798,11 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 0}
     m_Modifications:
+    - target: {fileID: 275794616494427016, guid: 6d5c474690583384b89a7c479fd36b51,
+        type: 3}
+      propertyPath: _WaitSeconds
+      value: 0.6
+      objectReference: {fileID: 0}
     - target: {fileID: 275794616494427017, guid: 6d5c474690583384b89a7c479fd36b51,
         type: 3}
       propertyPath: m_Name
