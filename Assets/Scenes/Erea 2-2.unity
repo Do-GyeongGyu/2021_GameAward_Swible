@@ -1786,7 +1786,7 @@ PrefabInstance:
     - target: {fileID: 565271142304639975, guid: 7c6f442f00d403e478dec89f34a21e0f,
         type: 3}
       propertyPath: NextSceanName
-      value: Clear1-7
+      value: EndScene 2
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 7c6f442f00d403e478dec89f34a21e0f, type: 3}
