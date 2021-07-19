@@ -12,7 +12,7 @@ GameObject:
   - component: {fileID: 1327703551774006224}
   - component: {fileID: 1327703551774006225}
   - component: {fileID: 1327703551774006230}
-  m_Layer: 5
+  m_Layer: 8
   m_Name: Timer
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -113,7 +113,7 @@ GameObject:
   - component: {fileID: 1327703552831710367}
   - component: {fileID: 1327703552831710364}
   - component: {fileID: 1327703552831710366}
-  m_Layer: 5
+  m_Layer: 8
   m_Name: Gage
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -202,7 +202,7 @@ GameObject:
   - component: {fileID: 1327703553041810046}
   - component: {fileID: 1327703553041810040}
   - component: {fileID: 1327703553041810041}
-  m_Layer: 5
+  m_Layer: 8
   m_Name: Image
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -276,7 +276,7 @@ GameObject:
   - component: {fileID: 8127044354416680589}
   - component: {fileID: 4572035803563483887}
   - component: {fileID: 5461463442250585618}
-  m_Layer: 5
+  m_Layer: 8
   m_Name: text
   m_TagString: Untagged
   m_Icon: {fileID: 0}

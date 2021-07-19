@@ -54,9 +54,18 @@ EditorBuildSettings:
     path: Assets/Scenes/Erea 1-8.unity
     guid: 1a9f4af032df2b748bfd6de59e67eb93
   - enabled: 1
+    path: Assets/Scenes/Clear/Clear1-8.unity
+    guid: 508dd20fcf92a744c8b87d42afbb7728
+  - enabled: 1
     path: Assets/Scenes/Erea 2-1.unity
     guid: 61736efa994dfa44684f6be89c8d90ca
   - enabled: 1
-    path: Assets/Scenes/EndScene.unity
-    guid: c829a4f43572a004992015d7c3d8ebf1
+    path: Assets/Scenes/Clear/Clear2-1.unity
+    guid: e34c528a8f8df2441aa96c643367636e
+  - enabled: 1
+    path: Assets/Scenes/Erea 2-2.unity
+    guid: dff65df1a42826f48acab4515f7d594e
+  - enabled: 1
+    path: Assets/Scenes/EndScene 2.unity
+    guid: d166ac774d088504494ae0f100466ac7
   m_configObjects: {}

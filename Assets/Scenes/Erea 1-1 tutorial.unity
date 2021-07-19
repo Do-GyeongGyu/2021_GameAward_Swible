@@ -165,6 +165,12 @@ Transform:
   m_Father: {fileID: 0}
   m_RootOrder: 12
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!20 &121081644 stripped
+Camera:
+  m_CorrespondingSourceObject: {fileID: 584113033349697215, guid: 54b01785de65066469091a1a2871779d,
+    type: 3}
+  m_PrefabInstance: {fileID: 584113034382211877}
+  m_PrefabAsset: {fileID: 0}
 --- !u!1 &285179567
 GameObject:
   m_ObjectHideFlags: 0
@@ -1967,6 +1973,11 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 584113033349697215, guid: 54b01785de65066469091a1a2871779d,
+        type: 3}
+      propertyPath: m_CullingMask.m_Bits
+      value: 256
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 54b01785de65066469091a1a2871779d, type: 3}
 --- !u!1001 &898497111368586327
@@ -2059,7 +2070,7 @@ PrefabInstance:
         type: 3}
       propertyPath: m_Camera
       value: 
-      objectReference: {fileID: 377352151}
+      objectReference: {fileID: 121081644}
     - target: {fileID: 1327703551774006227, guid: bdb9e8b7021927c4c8f401cee4aa0f29,
         type: 3}
       propertyPath: m_Pivot.x
@@ -2170,6 +2181,11 @@ PrefabInstance:
       propertyPath: m_Name
       value: Timer
       objectReference: {fileID: 0}
+    - target: {fileID: 1327703551774006231, guid: bdb9e8b7021927c4c8f401cee4aa0f29,
+        type: 3}
+      propertyPath: m_Layer
+      value: 8
+      objectReference: {fileID: 0}
     - target: {fileID: 1327703552831710364, guid: bdb9e8b7021927c4c8f401cee4aa0f29,
         type: 3}
       propertyPath: m_FillAmount
@@ -2194,6 +2210,21 @@ PrefabInstance:
         type: 3}
       propertyPath: countTime
       value: 120
+      objectReference: {fileID: 0}
+    - target: {fileID: 1327703552831710434, guid: bdb9e8b7021927c4c8f401cee4aa0f29,
+        type: 3}
+      propertyPath: m_Layer
+      value: 8
+      objectReference: {fileID: 0}
+    - target: {fileID: 1327703553041810047, guid: bdb9e8b7021927c4c8f401cee4aa0f29,
+        type: 3}
+      propertyPath: m_Layer
+      value: 8
+      objectReference: {fileID: 0}
+    - target: {fileID: 4651851326556796027, guid: bdb9e8b7021927c4c8f401cee4aa0f29,
+        type: 3}
+      propertyPath: m_Layer
+      value: 8
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: bdb9e8b7021927c4c8f401cee4aa0f29, type: 3}
@@ -2537,7 +2568,7 @@ PrefabInstance:
         type: 3}
       propertyPath: _Player
       value: 
-      objectReference: {fileID: 0}
+      objectReference: {fileID: 765761098}
     - target: {fileID: 4436818343133554265, guid: e5793fe821dd5d24194abaf66dd8fe80,
         type: 3}
       propertyPath: m_Name
@@ -2614,7 +2645,7 @@ PrefabInstance:
     - target: {fileID: 4917145650825357869, guid: b1693355267c4054da0ca47cd5103ad3,
         type: 3}
       propertyPath: m_LocalPosition.y
-      value: 473.36255
+      value: 476.06256
       objectReference: {fileID: 0}
     - target: {fileID: 4917145650825357869, guid: b1693355267c4054da0ca47cd5103ad3,
         type: 3}
@@ -3266,17 +3297,17 @@ PrefabInstance:
     - target: {fileID: 2027085081944005722, guid: 120e446482a8dd740a62e7dba7882519,
         type: 3}
       propertyPath: m_Color.b
-      value: 0.5188679
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 2027085081944005722, guid: 120e446482a8dd740a62e7dba7882519,
         type: 3}
       propertyPath: m_Color.g
-      value: 0.23740655
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 2027085081944005722, guid: 120e446482a8dd740a62e7dba7882519,
         type: 3}
       propertyPath: m_Color.r
-      value: 0.50778675
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 2027085081944005722, guid: 120e446482a8dd740a62e7dba7882519,
         type: 3}

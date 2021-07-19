@@ -1013,7 +1013,7 @@ Mesh:
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
-  m_Name: pb_Mesh20980
+  m_Name: pb_Mesh57346
   serializedVersion: 10
   m_SubMeshes:
   - serializedVersion: 2
@@ -1239,6 +1239,12 @@ PrefabInstance:
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 54b01785de65066469091a1a2871779d, type: 3}
+--- !u!20 &594099795 stripped
+Camera:
+  m_CorrespondingSourceObject: {fileID: 584113033349697215, guid: 54b01785de65066469091a1a2871779d,
+    type: 3}
+  m_PrefabInstance: {fileID: 594099794}
+  m_PrefabAsset: {fileID: 0}
 --- !u!1 &637872288
 GameObject:
   m_ObjectHideFlags: 0
@@ -1600,7 +1606,7 @@ Transform:
   m_GameObject: {fileID: 714370442}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
   m_LocalPosition: {x: 13, y: -7, z: -3.5}
-  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_LocalScale: {x: 2.5500002, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 0}
   m_RootOrder: 6
@@ -1988,7 +1994,7 @@ PrefabInstance:
     - target: {fileID: 4917145650825357869, guid: b1693355267c4054da0ca47cd5103ad3,
         type: 3}
       propertyPath: m_LocalPosition.y
-      value: 6.0699477
+      value: 7.969948
       objectReference: {fileID: 0}
     - target: {fileID: 4917145650825357869, guid: b1693355267c4054da0ca47cd5103ad3,
         type: 3}
@@ -2280,6 +2286,21 @@ PrefabInstance:
     - target: {fileID: 5127479107519364589, guid: 8e66661b324f7414598385b10b62e14d,
         type: 3}
       propertyPath: m_RootOrder
+      value: 3
+      objectReference: {fileID: 0}
+    - target: {fileID: 5127479107519364589, guid: 8e66661b324f7414598385b10b62e14d,
+        type: 3}
+      propertyPath: m_LocalScale.x
+      value: 3
+      objectReference: {fileID: 0}
+    - target: {fileID: 5127479107519364589, guid: 8e66661b324f7414598385b10b62e14d,
+        type: 3}
+      propertyPath: m_LocalScale.y
+      value: 3
+      objectReference: {fileID: 0}
+    - target: {fileID: 5127479107519364589, guid: 8e66661b324f7414598385b10b62e14d,
+        type: 3}
+      propertyPath: m_LocalScale.z
       value: 3
       objectReference: {fileID: 0}
     - target: {fileID: 5127479107519364589, guid: 8e66661b324f7414598385b10b62e14d,
@@ -4039,6 +4060,11 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 0}
     m_Modifications:
+    - target: {fileID: 1327703551774006224, guid: bdb9e8b7021927c4c8f401cee4aa0f29,
+        type: 3}
+      propertyPath: m_Camera
+      value: 
+      objectReference: {fileID: 594099795}
     - target: {fileID: 1327703551774006227, guid: bdb9e8b7021927c4c8f401cee4aa0f29,
         type: 3}
       propertyPath: m_Pivot.x
